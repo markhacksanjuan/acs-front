@@ -22,7 +22,7 @@ const Dashboard = () => {
                 <Button
                     fullWidth
                     variant='contained'
-                    className={classes.button}
+                    className={classes.submit}
                     onClick={() => history.push('/candidatos')}
                 >
                     Ver Candidatos
@@ -36,7 +36,7 @@ const Dashboard = () => {
                 <Button
                     fullWidth
                     variant='contained'
-                    className={classes.button}
+                    className={classes.submit}
                     onClick={() => history.push('/newCV')}
                 >
                     Añadir nuevo Candidato
@@ -50,7 +50,7 @@ const Dashboard = () => {
                 <Button
                     fullWidth
                     variant='contained'
-                    className={classes.button}
+                    className={classes.submit}
                     onClick={() => history.push('/addCsv')}
                 >
                     Añadir Candidatos CSV
@@ -64,7 +64,7 @@ const Dashboard = () => {
                 <Button
                     fullWidth
                     variant='contained'
-                    className={classes.button}
+                    className={classes.submit}
                     onClick={() => history.push('/ofertas')}
                 >
                     Ver Ofertas
@@ -78,7 +78,7 @@ const Dashboard = () => {
                 <Button
                     fullWidth
                     variant='contained'
-                    className={classes.button}
+                    className={classes.submit}
                     onClick={() => history.push('/newOferta')}
                 >
                     Añadir nueva Oferta

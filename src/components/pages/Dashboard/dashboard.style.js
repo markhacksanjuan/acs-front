@@ -18,19 +18,18 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '20px',
         borderRadius: '6px'
     },
-    button: {
+    submit: {
         backgroundColor: theme.palette.button.azul,
-        fontWeight: 'bold',
         color: theme.palette.text.blanco,
-        border: `2px solid ${theme.palette.text.blanco}`,
+        fontWeight: 'bold',
         '&:hover': {
-            color: theme.palette.button.azul,
             backgroundColor: theme.palette.text.blanco,
+            color: theme.palette.button.azul,
             border: `2px solid ${theme.palette.button.azul}`,
             boxShadow: 'none'
         },
         boxShadow: 'none',
-        width: '250px'
+        border: `2px solid ${theme.palette.text.blanco}`
     },
     containerCards: {
         display: 'flex',

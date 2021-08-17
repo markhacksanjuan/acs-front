@@ -1,10 +1,11 @@
 import axios from 'axios'
 const urls = {
-    dev: 'http://localhost:3000/cv'
+    dev: 'http://localhost:3000/cv',
+    build: 'https://acs-back.vercel.app/cv'
 }
 
 const http = axios.create({
-    baseURL: urls.dev
+    baseURL: urls.build
 })
 
 const getCV = async () => {

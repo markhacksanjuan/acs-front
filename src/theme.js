@@ -31,6 +31,15 @@ const theme = createTheme({
             root: {
                 marginTop: '16px',
                 textTransform: 'initial'
+            },
+            contained: {
+                backgroundColor: '#62859d',
+                fontWeight: 'bold',
+                color: '#62859d',
+                '&:hover': {
+                    backgroundColor: '#FFF',
+                    boxShadow: 'none'
+                }
             }
         }
     }

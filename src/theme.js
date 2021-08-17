@@ -35,11 +35,12 @@ const theme = createTheme({
             contained: {
                 backgroundColor: '#62859d',
                 fontWeight: 'bold',
-                color: '#62859d',
+                color: '#FFF',
                 '&:hover': {
                     backgroundColor: '#FFF',
-                    boxShadow: 'none'
-                }
+                    boxShadow: 'none',
+                },
+                border: '2px solid #62859d'
             }
         }
     }

@@ -20,6 +20,7 @@ const Dashboard = () => {
         return(
             <>
                 <Button
+                    type='submit'
                     fullWidth
                     variant='contained'
                     className={classes.submit}
@@ -34,6 +35,7 @@ const Dashboard = () => {
         return(
             <>
                 <Button
+                    type='submit'
                     fullWidth
                     variant='contained'
                     className={classes.submit}
@@ -48,6 +50,7 @@ const Dashboard = () => {
         return(
             <>
                 <Button
+                    type='submit'
                     fullWidth
                     variant='contained'
                     className={classes.submit}
@@ -62,6 +65,7 @@ const Dashboard = () => {
         return(
             <>
                 <Button
+                    type='submit'
                     fullWidth
                     variant='contained'
                     className={classes.submit}
@@ -76,6 +80,7 @@ const Dashboard = () => {
         return(
             <>
                 <Button
+                    type='submit'
                     fullWidth
                     variant='contained'
                     className={classes.submit}

@@ -5,7 +5,7 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.build
+    baseURL: urls.dev
 })
 
 const getCV = async () => {
@@ -51,9 +51,24 @@ const deleteCV = async id => {
         console.error(e)
     }
 }
+const updateCV = async (cv, id) => {
+    try{
+        await http.patch(`/cv/${id}`, cv)
+    }catch(e) {
+        console.error(e)
+    }
+}
 const addCsv = async csv => {
     try{
         const response = await http.post('/addCsv', csv)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
+const deleteCsv = async () => {
+    try{
+        const response = await http.delete('/deleteCsv')
         return response.data
     }catch(e) {
         console.error(e)
@@ -66,6 +81,8 @@ const cvService = {
     createCV,
     deleteCV,
     addFoto,
-    addCsv
+    addCsv,
+    updateCV,
+    deleteCsv
 }
 export default cvService

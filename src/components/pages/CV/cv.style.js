@@ -8,10 +8,9 @@ const useStyles = makeStyles(theme => ({
         padding: '35px'
     },
     card: {
-        border: `1px solid ${theme.palette.border.gris}`,
         padding: '0 25px',
         borderRadius: '6px',
-        width: '500px'
+        width: '635px'
     },
     containerBtn: {
         display: 'flex',

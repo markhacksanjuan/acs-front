@@ -14,6 +14,20 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         width: '100%',
         justifyContent: 'center'
+    },
+    deleteBtn: {
+        backgroundColor: theme.palette.button.delete,
+        marginLeft: '10px',
+        color: theme.palette.text.blanco,
+        fontWeight: 'bold',
+        '&:hover': {
+            backgroundColor: theme.palette.text.blanco,
+            border: `2px solid ${theme.palette.button.delete}`,
+            color: theme.palette.button.delete,
+            boxShadow: 'none'
+        },
+        border: `2px solid ${theme.palette.text.blanco}`,
+        boxShadow: 'none'
     }
 }))
 

@@ -33,9 +33,8 @@ const EditCV = ({ idCV }) => {
     }, [])
 
     const onSubmit = async data => {
-        console.log(data)
-        // history.push(`/cv/${idCV}`)
-        history.goBack()
+        await cvService.updateCV(data, idCV)
+        history.push(`/cv/${idCV}`)
     }
 
     const renderCandidatoForm = () => {
@@ -51,7 +50,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='Nombre'
-                                    required
                                     id='nombre'
                                     fullWidth
                                     disableUnderline={true}
@@ -70,7 +68,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='Primer Apellido'
-                                    required
                                     id='apellido1'
                                     fullWidth
                                     disableUnderline={true}
@@ -88,7 +85,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='Segundo Apellido'
-                                    required
                                     id='apellido2'
                                     fullWidth
                                     disableUnderline={true}
@@ -106,7 +102,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='DNI'
-                                    required
                                     id='dni'
                                     fullWidth
                                     disableUnderline={true}
@@ -124,7 +119,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='email'
                                     placeholder='Correo Electrónico'
-                                    required
                                     id='email'
                                     fullWidth
                                     disableUnderline={true}
@@ -142,7 +136,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='País'
-                                    required
                                     id='pais'
                                     fullWidth
                                     disableUnderline={true}
@@ -160,7 +153,6 @@ const EditCV = ({ idCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='Provincia'
-                                    required
                                     id='provincia'
                                     fullWidth
                                     disableUnderline={true}

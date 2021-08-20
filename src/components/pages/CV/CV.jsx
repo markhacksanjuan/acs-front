@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './cv.style'
+import SwipeableViews from 'react-swipeable-views'
 
 import cvService from '../../../services/cvService'
 
-import { Button } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
+import { Button,
+Typography,
+Box,
+AppBar,
+Tabs,
+Tab, 
+ThemeProvider} from '@material-ui/core'
 
 const CV = (props) => {
     const classes = useStyles()
     const history = useHistory()
+    const theme = useTheme()
+    const [value, setValue] = useState(0)
 
     const [candidato, setCandidato] = useState()
 
@@ -25,6 +35,27 @@ const CV = (props) => {
                 <span>{d.getDate()}-</span><span>{d.getMonth() + 1}-</span><span>{d.getFullYear()}</span>
                 </>
             )
+    }
+    const onChange = (e, newValue) => {
+        setValue(newValue)
+    }
+    const onChangeIndex = (index) => {
+        setValue(index)
+    }
+    const TabPanel = props => {
+        const { children, value, index, ...other } = props
+        return(
+            <Typography 
+                component='div'
+                role='tabpanel'
+                hidden={value !== index}
+                id={`action-tabpanel-${index}`}
+                aria-labelledby={`action-tab-${index}`}
+                {...other}
+            >
+                {value === index && <Box>{children}</Box>}
+            </Typography>
+        )
     }
 
     const renderCandidato = () => {
@@ -190,12 +221,48 @@ const CV = (props) => {
             {candidato && <h1>CV de {candidato.nombre}</h1>}
             {renderButtons()}
             <div className={classes.card}>
+                <AppBar position='static' color='default'>
+                    <Tabs
+                        value={value}
+                        onChange={onChange}
+                        indicatorColor='primary'
+                        textColor='primary'
+                        variant='fullWidth'
+                        aria-label='action tabs example'
+                    >
+                        <Tab label='Información' />
+                        <Tab label='Estudio' />
+                        <Tab label='Otros Estudios' />
+                        <Tab label='Experiencia' />
+                        <Tab label='Idiomas' />
+                        <Tab label='Otros Datos' />
+                    </Tabs>
+                </AppBar>
+                <SwipeableViews
+                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                    index={value}
+                    onChangeIndex={onChangeIndex}
+                >
+                    <TabPanel value={value} index={0} dir={theme.direction}>
                 {candidato && renderCandidato()}
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
                 {candidato && renderEstudios()}
+                    </TabPanel>
+                    <TabPanel value={value} index={2} dir={theme.direction}>
                 {candidato && renderEstudios2()}
+                    </TabPanel>
+                    <TabPanel value={value} index={3} dir={theme.direction}>
                 {candidato && renderExperiencia()}
+                    </TabPanel>
+                    <TabPanel value={value} index={4} dir={theme.direction}>
                 {candidato && renderIdiomas()}
+                    </TabPanel>
+                    <TabPanel value={value} index={5} dir={theme.direction}>
                 {candidato && renderOtros()}
+                    </TabPanel>
+
+                </SwipeableViews>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
         padding: '35px'
     },
     form: {
-        width: '500px'
+        width: '750px'
     },
     submit: {
         backgroundColor: theme.palette.button.azul,
@@ -27,6 +27,15 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    label: {
+        fontWeight: 'bold',
+        color: theme.palette.color.gris,
+        marginBottom: '5px'
+    },
+    radio: {
+        display: 'flex',
+        justifyContent: 'flex-start'
     }
 }))
 

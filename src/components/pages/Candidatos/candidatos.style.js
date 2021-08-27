@@ -7,14 +7,6 @@ const useStyles = makeStyles(theme => ({
         padding: '35px',
         alignItems: 'center'
     },
-    candidatos: {
-        display: 'flex',
-        flexDirection: 'row',
-        padding: '35px',
-        flexWrap: 'wrap',
-        width: '100%',
-        justifyContent: 'center'
-    },
     deleteBtn: {
         backgroundColor: theme.palette.button.delete,
         marginLeft: '10px',
@@ -28,6 +20,17 @@ const useStyles = makeStyles(theme => ({
         },
         border: `2px solid ${theme.palette.text.blanco}`,
         boxShadow: 'none'
+    },
+    candidatos: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '35px',
+        flexWrap: 'wrap',
+        width: '100%',
+        justifyContent: 'center'
+    },
+    list: {
+        listStyle: 'none'
     }
 }))
 

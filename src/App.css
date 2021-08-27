@@ -1,3 +1,7 @@
+textarea {
+  height: 150px !important;
+}
+
 .App {
   text-align: center;
 }

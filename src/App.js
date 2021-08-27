@@ -12,9 +12,11 @@ import EditCV from './components/pages/EditCV/EditCV'
 import NuevaOferta from './components/pages/NuevaOferta/NuevaOferta'
 import Ofertas from './components/pages/Ofertas/Ofertas'
 import AddCsv from './components/pages/AddCsv/AddCsv'
+import Oferta from './components/pages/Oferta/Oferta'
 
 const App = () => {
   const [idCV, setIdCV] = useState()
+  const [idOferta, setIdOferta] = useState()
 
   return (
     <>
@@ -41,7 +43,16 @@ const App = () => {
             )
           }} />
           <Route exact path='/newOferta' component={NuevaOferta} />
-          <Route exact path='/ofertas' component={Ofertas} />
+          <Route exact path='/ofertas' component={() => {
+            return(
+              <Ofertas setIdOferta={setIdOferta} />
+            )
+            }} />
+          <Route exact path='/oferta/:id' component ={() => {
+            return(
+              <Oferta idOferta={idOferta} />
+            )
+          }} />
         </Switch>
       </Router>
       

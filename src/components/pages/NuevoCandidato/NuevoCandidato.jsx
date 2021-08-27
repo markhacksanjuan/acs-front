@@ -9,11 +9,16 @@ import { Alert } from '@material-ui/lab'
 import { Input,
 Button,
 Grid,
-Checkbox } from '@material-ui/core'
+Checkbox,
+Select,
+MenuItem,
+RadioGroup,
+Radio } from '@material-ui/core'
 
 const NuevoCandidato = () => {
     const classes = useStyles()
     const [foto, setFoto] = useState()
+    const [titulacion, setTitulacion] = useState()
     const { control, handleSubmit } = useForm({
         defaultValues: {
             nombre: '',
@@ -21,6 +26,8 @@ const NuevoCandidato = () => {
             apellido2: '',
             dni: '',
             email: '',
+            telefono: '',
+            nacimiento: '',
             sexo: '',
             pais: '',
             provincia: '',
@@ -57,16 +64,21 @@ const NuevoCandidato = () => {
     const { dirtyFields } = useFormState({ control })
     const history = useHistory()
 
+    const onChangeTitulacion = (e) => {
+        setTitulacion(e.target.value)
+    }
+
     useEffect(() => {
 
-    }, [])
+    }, [foto, titulacion])
 
     const onSubmit = async data => {
-        const newFoto = new FormData()
-        newFoto.append('fotografia', foto)
-        const response = await cvService.createCV(data, newFoto)
-        const responseFoto = await cvService.addFoto(newFoto, response._id)
-        history.push('/candidatos')
+        console.log(data)
+        // const newFoto = new FormData()
+        // newFoto.append('fotografia', foto)
+        // const response = await cvService.createCV(data, newFoto)
+        // const responseFoto = await cvService.addFoto(newFoto, response._id)
+        // history.push('/candidatos')
     }
     const onChangeFoto = e => {
         setFoto(e.target.files[0])
@@ -77,6 +89,7 @@ const NuevoCandidato = () => {
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
+                    <p className={classes.label}>DNI</p>
                         <Controller 
                             name='dni'
                             control={control}
@@ -95,6 +108,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>NOMBRE</p>
                         <Controller 
                             name='nombre'
                             control={control}
@@ -112,6 +126,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>APELLIDO 1</p>
                         <Controller 
                             name='apellido1'
                             control={control}
@@ -129,6 +144,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>APELLIDO 2</p>
                         <Controller 
                             name='apellido2'
                             control={control}
@@ -146,6 +162,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>TU CORREO ELECTRÓNICO</p>
                         <Controller 
                             name='email'
                             control={control}
@@ -163,6 +180,43 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>TU TELÉFONO</p>
+                        <Controller 
+                            name='telefono'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='text'
+                                    placeholder='Teléfono'
+                                    required
+                                    id='telefono'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <p className={classes.label}>FECHA DE NACIMIENTO</p>
+                        <Controller 
+                            name='nacimiento'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='date'
+                                    placeholder='Fecha de nacimiento'
+                                    required
+                                    id='nacimiento'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <p className={classes.label}>SEXO</p>
                         <Controller 
                             name='sexo'
                             control={control}
@@ -180,6 +234,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>PAÍS</p>
                         <Controller 
                             name='pais'
                             control={control}
@@ -197,6 +252,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>PROVINCIA</p>
                         <Controller 
                             name='provincia'
                             control={control}
@@ -214,6 +270,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>FOTOGRAFIA</p>
                         <Controller 
                             name='foto'
                             control={control}
@@ -243,23 +300,38 @@ const NuevoCandidato = () => {
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
+                    <p className={classes.label}>TIPO DE TITULACIÓN</p>
                         <Controller 
                             name='titulacion'
                             control={control}
                             render={({ field }) =>
-                                <Input
+                                <Select
                                     {...field}
                                     type='text'
                                     placeholder='Titulación'
-                                    required
                                     id='titulacion'
                                     fullWidth
                                     disableUnderline={true}
-                                />
+                                    // native
+                                    displayEmpty
+                                    // onChange={e => onChangeTitulacion(e)}
+                                >
+                                    <MenuItem value='Ciclo Formativo de Grado Medio'>Ciclo Formativo de Grado Medio</MenuItem>
+                                    <MenuItem value='Ciclo Formativo de Grado Superior'>Ciclo Formativo de Grado Superior</MenuItem>
+                                    <MenuItem value='COU/BUP/EGP/Básicos'>COU/BUP/EGP/Básicos</MenuItem>
+                                    <MenuItem value='Diplomatura e Ingenierías Técnicas'>Diplomatura e Ingenierías Técnicas</MenuItem>
+                                    <MenuItem value='Doctorado'>Doctorado</MenuItem>
+                                    <MenuItem value='Licenciaturas e Ingenierías'>Licenciaturas e Ingenierías</MenuItem>
+                                    <MenuItem value='Titulación No Homologada'>Titulación No Homologada</MenuItem>
+                                    <MenuItem value='Sin Estudios'>Sin Estudios</MenuItem>
+                                    <MenuItem value='Técnico Auxiliar FP1'>Técnico Auxiliar FP1</MenuItem>
+                                    <MenuItem value='Técnico Especialista FP2'>Técnico Especialista FP2</MenuItem>
+                                </Select>
                             }
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>ESPECIALIDAD</p>
                         <Controller 
                             name='especialidad'
                             control={control}
@@ -268,7 +340,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Especialidad'
-                                    required
                                     id='especialidad'
                                     fullWidth
                                     disableUnderline={true}
@@ -276,39 +347,8 @@ const NuevoCandidato = () => {
                             }
                         />
                     </Grid>
-                    <Grid item xs={12} className={classes.checkbox}>
-                        <Controller 
-                            name='estudiosFinalizados'
-                            control={control}
-                            render={({ field }) =>
-                                <Checkbox 
-                                    {...field}
-                                    id='estudiosFinalizados'
-                                />
-                            }
-                        />
-                        <div>
-                            Estudios finalizados
-                        </div>
-                    </Grid>
                     <Grid item xs={12}>
-                        <Controller 
-                            name='ultimoAno'
-                            control={control}
-                            render={({ field }) =>
-                                <Input
-                                    {...field}
-                                    type='number'
-                                    placeholder='Ultimo año'
-                                    required
-                                    id='ultimoAno'
-                                    fullWidth
-                                    disableUnderline={true}
-                                />
-                            }
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
+                    <p className={classes.label}>COMENTARIO:</p>
                         <Controller 
                             name='comentarioEstudio'
                             control={control}
@@ -321,9 +361,49 @@ const NuevoCandidato = () => {
                                     id='comentarioEstudio'
                                     fullWidth
                                     disableUnderline={true}
+                                    inputComponent='textarea'
                                 />
                             }
                         />
+                    </Grid>
+                    
+                    <Grid item xs={12}>
+                    <p className={classes.label}>ÚLTIMO AÑO CURSADO</p>
+                        <Controller 
+                            name='ultimoAno'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='date'
+                                    placeholder='Ultimo año'
+                                    required
+                                    id='ultimoAno'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} className={classes.checkbox} >
+                        <Controller 
+                            name='estudiosFinalizados'
+                            control={control}
+                            className={classes.radio}
+                            render={({ field }) =>
+                                <Checkbox 
+                                    {...field}
+                                    id='estudiosFinalizados'
+                                />
+                                // <RadioGroup>
+                                //     <Radio name='estudiosFinalizados' />
+                                //     <Radio name='estudiosFinalizados' />
+                                // </RadioGroup>
+                            }
+                        />
+                        <div>
+                            Estudios finalizados
+                        </div>
                     </Grid>
                 </Grid>
             </>
@@ -333,7 +413,9 @@ const NuevoCandidato = () => {
         return(
             <>
                 <Grid container spacing={2}>
+                    
                     <Grid item xs={12}>
+                    <p className={classes.label}>NOMBRE</p>
                         <Controller 
                             name='nombreEstudio'
                             control={control}
@@ -351,6 +433,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                        <p className={classes.label}>CENTRO</p>
                         <Controller 
                             name='centro'
                             control={control}
@@ -368,23 +451,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Controller 
-                            name='horasEstudio'
-                            control={control}
-                            render={({ field }) =>
-                                <Input
-                                    {...field}
-                                    type='number'
-                                    placeholder='Horas de estudio'
-                                    required
-                                    id='horasEstudio'
-                                    fullWidth
-                                    disableUnderline={true}
-                                />
-                            }
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
+                        <p className={classes.label}>FECHA DESDE</p>
                         <Controller 
                             name='desdeEstudio'
                             control={control}
@@ -402,6 +469,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                        <p className={classes.label}>FECHA HASTA</p>
                         <Controller 
                             name='hastaEstudio'
                             control={control}
@@ -419,6 +487,25 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                        <p className={classes.label}>Nº DE HORAS</p>
+                        <Controller 
+                            name='horasEstudio'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='number'
+                                    placeholder='Horas de estudio'
+                                    required
+                                    id='horasEstudio'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <p className={classes.label}>COMENTARIO:</p>
                         <Controller 
                             name='comentarioEstudio2'
                             control={control}
@@ -431,6 +518,7 @@ const NuevoCandidato = () => {
                                     id='comentarioEstudio2'
                                     fullWidth
                                     disableUnderline={true}
+                                    inputComponent='textarea'
                                 />
                             }
                         />
@@ -444,6 +532,7 @@ const NuevoCandidato = () => {
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
+                    <p className={classes.label}>IDIOMA</p>
                         <Controller 
                             name='idioma'
                             control={control}
@@ -461,6 +550,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>TÍTULO OFICIAL</p>
                         <Controller 
                             name='titulo'
                             control={control}
@@ -478,28 +568,35 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>NIVEL CONVERSACIÓN</p>
                         <Controller 
                             name='nivelConversacion'
                             control={control}
                             render={({ field }) =>
-                                <Input
+                                <Select
                                     {...field}
                                     type='text'
                                     placeholder='Nivel de conversación'
-                                    required
                                     id='nivelConversacion'
                                     fullWidth
                                     disableUnderline={true}
-                                />
+                                    displayEmpty
+                                >
+                                    <MenuItem value='Básico'>Básico</MenuItem>
+                                    <MenuItem value='Medio'>Medio</MenuItem>
+                                    <MenuItem value='Avanzado'>Avanzado</MenuItem>
+                                    <MenuItem value='Experto'>Experto</MenuItem>
+                                </Select>
                             }
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>NIVEL ESCRITO</p>
                         <Controller 
                             name='nivelEscrito'
                             control={control}
                             render={({ field }) =>
-                                <Input
+                                <Select
                                     {...field}
                                     type='text'
                                     placeholder='Nivel de escritura'
@@ -507,16 +604,23 @@ const NuevoCandidato = () => {
                                     id='nivelEscrito'
                                     fullWidth
                                     disableUnderline={true}
-                                />
+                                    displayEmpty
+                                >
+                                    <MenuItem value='Básico'>Básico</MenuItem>
+                                    <MenuItem value='Medio'>Medio</MenuItem>
+                                    <MenuItem value='Avanzado'>Avanzado</MenuItem>
+                                    <MenuItem value='Experto'>Experto</MenuItem>
+                                </Select>
                             }
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>NIVEL COMPRENSIÓN</p>
                         <Controller 
                             name='nivelComprension'
                             control={control}
                             render={({ field }) =>
-                                <Input
+                                <Select
                                     {...field}
                                     type='text'
                                     placeholder='Nivel de comprensión'
@@ -524,11 +628,18 @@ const NuevoCandidato = () => {
                                     id='nivelComprension'
                                     fullWidth
                                     disableUnderline={true}
-                                />
+                                    displayEmpty
+                                >
+                                    <MenuItem value='Básico'>Básico</MenuItem>
+                                    <MenuItem value='Medio'>Medio</MenuItem>
+                                    <MenuItem value='Avanzado'>Avanzado</MenuItem>
+                                    <MenuItem value='Experto'>Experto</MenuItem>
+                                </Select>
                             }
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>COMENTARIO:</p>
                         <Controller 
                             name='comentarioIdioma'
                             control={control}
@@ -541,6 +652,7 @@ const NuevoCandidato = () => {
                                     id='comentarioIdioma'
                                     fullWidth
                                     disableUnderline={true}
+                                    inputComponent='textarea'
                                 />
                             }
                         />
@@ -554,6 +666,7 @@ const NuevoCandidato = () => {
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
+                    <p className={classes.label}>EMPRESA</p>
                         <Controller 
                             name='empresa'
                             control={control}
@@ -571,6 +684,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>PUESTO</p>
                         <Controller 
                             name='puesto'
                             control={control}
@@ -588,6 +702,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>RESPONSABILIDADES</p>
                         <Controller 
                             name='responsabilidades'
                             control={control}
@@ -605,6 +720,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>DESCRIPCIÓN</p>
                         <Controller 
                             name='descripcion'
                             control={control}
@@ -622,6 +738,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>FECHA DESDE</p>
                         <Controller 
                             name='desdeExperiencia'
                             control={control}
@@ -639,6 +756,7 @@ const NuevoCandidato = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>FECHA HASTA</p>
                         <Controller 
                             name='hastaExperiencia'
                             control={control}
@@ -651,6 +769,25 @@ const NuevoCandidato = () => {
                                     id='hastaExperiencia'
                                     fullWidth
                                     disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <p className={classes.label}>DESCRIPCIÓN</p>
+                        <Controller 
+                            name='descripcion'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='text'
+                                    placeholder='Descripción del puesto'
+                                    required
+                                    id='descripcion'
+                                    fullWidth
+                                    disableUnderline={true}
+                                    inputComponent='textarea'
                                 />
                             }
                         />
@@ -709,6 +846,7 @@ const NuevoCandidato = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12}>
+                    <p className={classes.label}>COMENTARIOS:</p>
                         <Controller 
                             name='comentarioOtros'
                             control={control}
@@ -721,6 +859,7 @@ const NuevoCandidato = () => {
                                     id='comentarioOtros'
                                     fullWidth
                                     disableUnderline={true}
+                                    inputComponent='textarea'
                                 />
                             }
                         />
@@ -733,17 +872,18 @@ const NuevoCandidato = () => {
     return(
         <div className={classes.container}>
             <h1>Nuevo Candidato</h1>
+            <h3>DATOS GENERALES</h3>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} autoComplete='off' >
                 {renderCandidatoForm()}
-                <h3>Estudios</h3>
+                <h3>DATOS DE ESTUDIOS</h3>
                 {renderEstudioForm()}
-                <h3>Otros estudios</h3>
+                <h3>OTROS ESTUDIOS</h3>
                 {renderEstudio2Form()}
-                <h3>Idiomas</h3>
+                <h3>DATOS IDIOMAS</h3>
                 {renderIdiomaForm()}
-                <h3>Experiencia</h3>
+                <h3>DATOS EXPERIENCIA</h3>
                 {renderExperienciaForm()}
-                <h3>Otros datos</h3>
+                <h3>DATOS OTROS</h3>
                 {renderOtrosForm()}
                 <Button
                     type='submit'

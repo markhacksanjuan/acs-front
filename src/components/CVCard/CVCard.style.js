@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             backgroundColor: theme.palette.border.gris
         },
-        width: '200px'
+        // width: '200px'
     }
 
 }))

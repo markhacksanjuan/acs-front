@@ -5,14 +5,13 @@ import OfertaCard from '../../OfertaCard/OfertaCard'
 
 import ofertaService from '../../../services/ofertaService'
 
-const Ofertas = props => {
+const Ofertas = ({ setIdOferta }) => {
     const classes = useStyles()
     const [ofertas, setOfertas] = useState()
 
     const getOfertas = async () => {
         const offers = await ofertaService.getAllOfertas()
         setOfertas(offers)
-        console.log(offers)
     }
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const Ofertas = props => {
         <div className={classes.container}>
             <h1>Ofertas</h1>
             <div className={classes.ofertas}>
-                {ofertas && <OfertaCard ofertas={ofertas} />}
+                {ofertas && <OfertaCard ofertas={ofertas} setIdOferta={setIdOferta}  />}
             </div>
         </div>
     )

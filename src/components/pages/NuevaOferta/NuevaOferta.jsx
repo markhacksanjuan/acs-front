@@ -31,6 +31,7 @@ const NuevaOferta = () => {
         console.log(data)
         const response = await ofertaService.createOferta(data)
         console.log(response)
+        history.push('/ofertas')
     }
 
     const renderOfertaForm = () => {

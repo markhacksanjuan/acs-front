@@ -9,13 +9,14 @@ import CVCard from '../../CVCard/CVCard'
 
 import { Button,
 Input,
-Grid } from '@material-ui/core'
+Grid,
+Chip } from '@material-ui/core'
 
 const Candidatos = (props) => {
     const classes = useStyles()
+    const tecnologias = ['Javascript', 'React']
     const [cvs, setCvs] = useState()
     const [searchName, setSearchName] = useState()
-    const [searchResult, setSearchResult] = useState()
     const history = useHistory()
     const { control } = useForm({
         defaultValues: {
@@ -23,6 +24,9 @@ const Candidatos = (props) => {
         }
     })
     const setIdCV = props.setIdCV
+    const [chipData, setChipData] = useState([
+        { key: 0, label: 'Javascript'}
+    ])
 
     const getCVs = async () => {
         const cvS = await cvService.getCV()
@@ -30,27 +34,29 @@ const Candidatos = (props) => {
     }
 
     useEffect(() => {
-        if(!cvs){
-            getCVs()
-        }
-        if(cvs){
-            
-        }
-    }, [searchName, cvs])
+        getCVs()
+    }, [])
+
+    const renderChips = () => {
+        return chipData.map(data => {
+            return(
+                <li key={data.key}>
+                    <Chip 
+                    label={data.label} 
+                    onDelete={handleDelete(data)}
+                    />
+                </li>
+            )
+        })
+    }
+    const handleDelete = (chipToDelete) => () => {
+        setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+      };
 
     const onDelete = async (e) => {
         const response = await cvService.deleteCsv()
         console.log(response)
         history.push('/dashboard')
-    }
-    const onChange = (e) => {
-        setSearchName(e.target.value)
-        const result = cvs.filter(item => {
-                const name = item.nombre.toLowerCase()
-                return name.includes(searchName)
-            })
-            console.log(result)
-            setSearchResult(result)
     }
     const renderButtons = () => {
         return(
@@ -90,18 +96,32 @@ const Candidatos = (props) => {
             </>
         )
     }
+    const onChange = (e) => {
+        setSearchName(e.target.value)
+    }
+    let filteredCandidatos 
+    if(cvs) {
+        filteredCandidatos = cvs.filter(cv => {
+            const name = cv.nombre.toLowerCase()
+            return name.includes(searchName)
+        })
+    }
+    
 
     return(
         <div className={classes.container}>
             <h1>Candidatos</h1>
+            <ul className={classes.list}>
+                {cvs && renderChips()}
+            </ul>
             <form>
                 {cvs && renderInput()}
             </form>
             {cvs && renderButtons()}
             <div className={classes.candidatos}>
-                {(cvs && !searchResult) && <CVCard cvs={cvs} setIdCV={setIdCV} /> }
-                {searchResult && <CVCard cvs={searchResult} setIdCV={setIdCV} />}
+                {cvs && <CVCard cvs={filteredCandidatos.length !== 0 ? filteredCandidatos : cvs} setIdCV={setIdCV} />}
             </div>
+
         </div>
     )
 }

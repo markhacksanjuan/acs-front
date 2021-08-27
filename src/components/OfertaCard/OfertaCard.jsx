@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './ofertaCard.style'
 
-const OfertaCard = ({ ofertas }) => {
+const OfertaCard = ({ ofertas, setIdOferta }) => {
     const classes = useStyles()
     const history = useHistory()
+
+    const onClick = (id) => {
+        setIdOferta(id)
+        history.push(`/oferta/${id}`)
+    }
 
 
     useEffect(() => {
@@ -14,7 +19,7 @@ const OfertaCard = ({ ofertas }) => {
     const renderOfertas = () => {
         return ofertas.map(oferta => {
             return(
-                <div className={classes.ofertaCard} key={oferta._id}>
+                <div className={classes.ofertaCard} key={oferta._id} onClick={() => onClick(oferta._id)}>
                     <p>Servicio: {oferta.servicio}</p>
                     <p>Titulación: {oferta.titulacion}</p>
                     <p>Experiencia: {oferta.experiencia}</p>

@@ -2,11 +2,9 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './CVCard.style'
 
-const CVCard = props => {
+const CVCard = ({ cvs, setIdCV }) => {
     const classes = useStyles()
     const history = useHistory()
-    const cvs = props.cvs
-    const setIdCV = props.setIdCV
 
     const onClick = (id) => {
         setIdCV(id)

@@ -5,7 +5,7 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.build
+    baseURL: urls.dev
 })
 
 const createOferta = async offer => {
@@ -24,9 +24,27 @@ const getAllOfertas = async () => {
         console.error(e)
     }
 }
+const getOneOferta = async (id) => {
+    try {
+        const response = await http.get(`/getOne/${id}`)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
+const deleteOneOferta = async (id) => {
+    try {
+        const response = await http.delete(`/getOne/${id}`)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
 
 const ofertaService = {
     createOferta,
-    getAllOfertas
+    getAllOfertas,
+    getOneOferta,
+    deleteOneOferta
 }
 export default ofertaService

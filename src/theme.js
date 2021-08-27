@@ -15,6 +15,9 @@ const theme = createTheme({
         },
         hover: {
             delete: '#fcc'
+        },
+        color: {
+            gris: '#555'
         }
     },
     overrides: {

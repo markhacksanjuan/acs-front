@@ -4,7 +4,7 @@ const urls = {
     build: 'https://acs-back.vercel.app/exp'
 }
 const http = axios.create({
-    baseURL: urls.dev
+    baseURL: urls.build
 })
 
 const updateExp = async (id, estudio) => {

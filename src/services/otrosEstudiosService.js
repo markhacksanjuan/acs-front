@@ -4,7 +4,7 @@ const urls = {
     build: 'https://acs-back.vercel.app/estudio2'
 }
 const http = axios.create({
-    baseURL: urls.dev
+    baseURL: urls.build
 })
 
 const updateOtrosEstudios = async (id, estudio) => {

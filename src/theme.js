@@ -45,6 +45,25 @@ const theme = createTheme({
                 },
                 border: '2px solid #62859d'
             }
+        },
+        MuiLink: {
+            root: {
+                '&:visited': {
+                    color: '#000'
+                },
+                '&:hover': {
+                    color: '#000'
+                }
+            },
+            underlineNone: {
+                color: '#000',
+                '&:visited': {
+                    color: '#000'
+                },
+                '&:hover': {
+                    color: '#555'
+                }
+            }
         }
     }
 })

@@ -112,12 +112,12 @@ const Candidatos = (props) => {
         <div className={classes.container}>
             <h1>Candidatos</h1>
             <ul className={classes.list}>
-                {cvs && renderChips()}
+                {/* {cvs && renderChips()} */}
             </ul>
             <form>
                 {cvs && renderInput()}
             </form>
-            {cvs && renderButtons()}
+            {/* {cvs && renderButtons()} */}
             <div className={classes.candidatos}>
                 {cvs && <CVCard cvs={filteredCandidatos.length !== 0 ? filteredCandidatos : cvs} setIdCV={setIdCV} />}
             </div>

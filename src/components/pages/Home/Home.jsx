@@ -11,10 +11,10 @@ Grid } from '@material-ui/core'
 import authService from '../../../services/authService'
 
 
-const Home = () => {
+const Home = ({ setUser }) => {
     const { control, handleSubmit, setValue } = useForm({
         defaultValues: {
-            email: '',
+            username: '',
             password: ''
         }
     })
@@ -30,8 +30,8 @@ const Home = () => {
     const onSubmit = async (data, e) => {
         try{
             const user = await authService.login(data)
-            console.log(user)
             if(user){
+                setUser(user.user)
                 history.push('/dashboard')
             }
         }catch(e) {
@@ -46,15 +46,15 @@ const Home = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Controller 
-                                name='email'
+                                name='username'
                                 control={control}
                                 render={({ field }) =>
                                     <Input 
                                         {...field}
-                                        type='email'
-                                        placeholder='Correo Electrónico'
+                                        type='username'
+                                        placeholder='Usuario'
                                         required
-                                        id='email'
+                                        id='username'
                                         fullWidth
                                         disableUnderline={true}
                                         autoFocus
@@ -96,7 +96,7 @@ const Home = () => {
 
     return(
         <div className={classes.container}>
-            <h1>ACS Technologies</h1>
+            <h1>ACS Informáticos</h1>
             <div className={classes.card}>
                 {renderForm()}
             </div>

@@ -11,6 +11,10 @@ const http = axios.create({
 const login = async (user) => {
     try{
         const response = await http.post('/login', user)
+        if(response.data.token){
+            localStorage.setItem('user', JSON.stringify(response.data.user))
+            localStorage.setItem('token', JSON.stringify(response.data.token))
+        }
         return response.data
     }catch(e) {
 

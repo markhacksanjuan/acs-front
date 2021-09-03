@@ -93,7 +93,7 @@ const Dashboard = () => {
     }
     return(
         <div className={classes.container}>
-            <h1>Dashboard</h1>
+            <h1>ACS Informáticos</h1>
             <div className={classes.containerCards}>
                 <div className={classes.card}>
                     <h3>Candidatos</h3>

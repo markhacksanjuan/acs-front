@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
 import Navbar from './components/Navbar/Navbar'
@@ -17,13 +17,31 @@ import Oferta from './components/pages/Oferta/Oferta'
 const App = () => {
   const [idCV, setIdCV] = useState()
   const [idOferta, setIdOferta] = useState()
+  const [user, setUser] = useState()
+  const [loggedIn, setLoggedIn] = useState()
+
+  const getUserLoggedIn = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user){
+      setLoggedIn(user)
+      setUser(user)
+    }
+  }
+
+  useEffect(() => {
+    getUserLoggedIn()
+  }, [])
 
   return (
     <>
       <Router>
-      <Navbar />
+      {loggedIn && <Navbar user={user} setUser={setUser} />}
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={() => {
+            return(
+              <Home setUser={setUser} />
+            )
+          }} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/candidatos' component={() => {
             return(

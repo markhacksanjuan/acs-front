@@ -35,7 +35,7 @@ const App = () => {
   return (
     <>
       <Router>
-      {loggedIn && <Navbar user={user} setUser={setUser} />}
+      <Navbar user={user} setUser={setUser} />
         <Switch>
           <Route exact path='/' component={() => {
             return(

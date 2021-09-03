@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     getUserLoggedIn()
-  }, [])
+  }, [user])
 
   return (
     <>

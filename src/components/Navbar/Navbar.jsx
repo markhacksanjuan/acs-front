@@ -16,7 +16,7 @@ const Navbar = ({ user, setUser }) => {
     if(user) {
         return(
             <div className={classes.navbar}>
-                <p>Hola, {user.email}</p>
+                <p>Hola, {user.username}</p>
                 <ul className={classes.list}>
                     <li className={classes.item}><Link className={classes.link} to='/dashboard' underline='none'>Dashboard</Link></li>
                     <li className={classes.item} onClick={logOut}>Cerrar sesión</li>

@@ -85,7 +85,7 @@ const Home = ({ setUser }) => {
                         fullWidth
                         variant='contained'
                         className={classes.submit}
-                        disabled={!dirtyFields.email || !dirtyFields.password}
+                        disabled={!dirtyFields.username || !dirtyFields.password}
                     >
                         Iniciar sesión
                     </Button>

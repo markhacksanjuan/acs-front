@@ -51,7 +51,7 @@ const Home = ({ setUser }) => {
                                 render={({ field }) =>
                                     <Input 
                                         {...field}
-                                        type='username'
+                                        type='text'
                                         placeholder='Usuario'
                                         required
                                         id='username'

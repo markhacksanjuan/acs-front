@@ -31,8 +31,8 @@ const Home = ({ setUser }) => {
         try{
             const user = await authService.login(data)
             if(user){
-                setUser(user.user)
                 history.push('/dashboard')
+                setUser(user.user)
             }
         }catch(e) {
             console.error(e)

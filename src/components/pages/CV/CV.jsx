@@ -37,6 +37,7 @@ const CV = (props) => {
     const [editIdiomas, setEditIdiomas] = useState(false)
     const [editOtrosDatos, setEditOtrosDatos] = useState(false)
 
+    const user = props.user
     let idCV = props.idCV
     if(!idCV){
         const pathnameArr = history.location.pathname.split('/')
@@ -129,19 +130,21 @@ const CV = (props) => {
                     <p onClick={() => onClickEdit('info')} className={classes.edit}>Cancelar</p>
                 </div>
                 <form onSubmit={handleSubmit(onSubmitInfo)} >
-                    <Controller 
-                        name='nombre'
-                        control={control}
-                        render={({ field }) => 
-                            <Input 
-                                {...field}
-                                type='text'
-                                fullWidth
-                                disableUnderline={true}
+                            <p className={classes.label}>NOMBRE</p>
+                            <Controller 
+                                name='nombre'
+                                control={control}
+                                render={({ field }) => 
+                                    <Input 
+                                        {...field}
+                                        type='text'
+                                        fullWidth
+                                        disableUnderline={true}
+                                    />
+                                }
+                                defaultValue={candidato.nombre}
                             />
-                        }
-                        defaultValue={candidato.nombre}
-                    />
+                    <p className={classes.label}>APELLIDO</p>
                     <Controller 
                         name='apellido1'
                         control={control}
@@ -155,6 +158,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.apellido1}
                     />
+                    <p className={classes.label}>APELLIDO</p>
                     <Controller 
                         name='apellido2'
                         control={control}
@@ -168,6 +172,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.apellido2}
                     />
+                    <p className={classes.label}>DNI</p>
                     <Controller 
                         name='dni'
                         control={control}
@@ -181,6 +186,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.dni}
                     />
+                    <p className={classes.label}>EMAIL</p>
                     <Controller 
                         name='email'
                         control={control}
@@ -194,6 +200,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.email}
                     />
+                    <p className={classes.label}>PAIS</p>
                     <Controller 
                         name='pais'
                         control={control}
@@ -207,6 +214,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.pais}
                     />
+                    <p className={classes.label}>PROVINCIA</p>
                     <Controller 
                         name='provincia'
                         control={control}
@@ -220,6 +228,7 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.provincia}
                     />
+                    <p className={classes.label}>SEXO</p>
                     <Controller 
                         name='sexo'
                         control={control}
@@ -279,6 +288,7 @@ const CV = (props) => {
             return candidato.estudios.map(estudio => {
                 return(
                     <form key={estudio._id} onSubmit={handleSubmit((data) => onSubmitEstudio(data, estudio._id))} >
+                    <p className={classes.label}>TIPO DE TITULACIÓN</p>
                         <Controller 
                             name='titulacion'
                             control={control}
@@ -292,6 +302,7 @@ const CV = (props) => {
                             }
                             defaultValue={estudio.titulacion}
                         />
+                        <p className={classes.label}>ESPECIALIDAD</p>
                         <Controller 
                             name='especialidad'
                             control={control}
@@ -305,6 +316,7 @@ const CV = (props) => {
                             }
                             defaultValue={estudio.especialidad}
                         />
+                        <p className={classes.label}>ESTUDIOS FINALIZADOS</p>
                         <Controller 
                             name='estudiosFinalizados'
                             control={control}
@@ -320,19 +332,21 @@ const CV = (props) => {
                         <div>
                             Estudios finalizados
                         </div>
+                        <p className={classes.label}>ÚLTIMO AÑO CURSADO</p>
                         <Controller 
                             name='ultimoAno'
                             control={control}
                             render={({ field }) => 
                                 <Input 
                                     {...field}
-                                    type='text'
+                                    type='date'
                                     fullWidth
                                     disableUnderline={true}
                                 />
                             }
                             defaultValue={estudio.ultimoAno}
                         />
+                        <p className={classes.label}>COMENTARIO</p>
                         <Controller 
                             name='comentarioEstudio'
                             control={control}
@@ -401,6 +415,7 @@ const CV = (props) => {
             return candidato.estudios2.map(estudio => {
                 return(
                     <form key={estudio._id} onSubmit={handleSubmit((data) => onSubmitEstudio2(data, estudio._id))} >
+                    <p className={classes.label}>NOMBRE</p>
                         <Controller 
                             name='nombreEstudio'
                             control={control}
@@ -414,6 +429,7 @@ const CV = (props) => {
                             }
                             defaultValue={estudio.nombreEstudio}
                         />
+                        <p className={classes.label}>CENTRO</p>
                         <Controller 
                             name='centro'
                             control={control}
@@ -427,6 +443,7 @@ const CV = (props) => {
                             }
                             defaultValue={estudio.centro}
                         />
+                        <p className={classes.label}>Nº DE HORAS</p>
                         <Controller 
                             name='horasEstudio'
                             control={control}
@@ -440,6 +457,7 @@ const CV = (props) => {
                             }
                             defaultValue={estudio.horasEstudio}
                         />
+                        <p className={classes.label}>FECHA DESDE</p>
                         <Controller 
                             name='desdeEstudio'
                             control={control}
@@ -453,6 +471,7 @@ const CV = (props) => {
                             }
                             defaultValue={getDateForm(estudio.desdeEstudio)}
                         />
+                        <p className={classes.label}>FECHA HASTA</p>
                         <Controller 
                             name='hastaEstudio'
                             control={control}
@@ -466,6 +485,7 @@ const CV = (props) => {
                             }
                             defaultValue={getDateForm(estudio.hastaEstudio)}
                         />
+                        <p className={classes.label}>COMENTARIO</p>
                         <Controller 
                             name='comentarioEstudio2'
                             control={control}
@@ -535,6 +555,7 @@ const CV = (props) => {
             return candidato.experiencia.map(exp => {
                 return(
                     <form key={exp._id} onSubmit={handleSubmit((data) => onSubmitExp(data, exp._id))} >
+                        <p className={classes.label}>EMPRESA</p>
                         <Controller 
                             name='empresa'
                             control={control}
@@ -548,6 +569,7 @@ const CV = (props) => {
                             }
                             defaultValue={exp.empresa}
                         />
+                        <p className={classes.label}>PUESTO</p>
                         <Controller 
                             name='puesto'
                             control={control}
@@ -561,6 +583,7 @@ const CV = (props) => {
                             }
                             defaultValue={exp.puesto}
                         />
+                        <p className={classes.label}>RESPONSABILIDADES</p>
                         <Controller 
                             name='responsabilidades'
                             control={control}
@@ -574,6 +597,7 @@ const CV = (props) => {
                             }
                             defaultValue={exp.responsabilidades}
                         />
+                        <p className={classes.label}>DESCRIPCIÓN</p>
                         <Controller 
                             name='descripcion'
                             control={control}
@@ -587,6 +611,7 @@ const CV = (props) => {
                             }
                             defaultValue={exp.descripcion}
                         />
+                        <p className={classes.label}>FECHA DESDE</p>
                         <Controller 
                             name='desdeExperiencia'
                             control={control}
@@ -600,6 +625,7 @@ const CV = (props) => {
                             }
                             defaultValue={getDateForm(exp.desdeExperiencia)}
                         />
+                        <p className={classes.label}>FECHA HASTA</p>
                         <Controller 
                             name='hastaExperiencia'
                             control={control}
@@ -669,6 +695,7 @@ const CV = (props) => {
             return candidato.idiomas.map(idioma => {
                 return(
                     <form key={idioma._id} onSubmit={handleSubmit((data) => onSubmitIdioma(data, idioma._id))} >
+                    <p className={classes.label}>IDIOMA</p>
                         <Controller 
                             name='idioma'
                             control={control}
@@ -682,6 +709,7 @@ const CV = (props) => {
                             }
                             defaultValue={idioma.idioma}
                         />
+                        <p className={classes.label}>TÍTULO OFICIAL</p>
                         <Controller 
                             name='titulo'
                             control={control}
@@ -695,6 +723,7 @@ const CV = (props) => {
                             }
                             defaultValue={idioma.titulo}
                         />
+                        <p className={classes.label}>NIVEL CONVERSACIÓN</p>
                         <Controller 
                             name='nivelConversacion'
                             control={control}
@@ -708,6 +737,7 @@ const CV = (props) => {
                             }
                             defaultValue={idioma.nivelConversacion}
                         />
+                        <p className={classes.label}>NIVEL ESCRITO</p>
                         <Controller 
                             name='nivelEscrito'
                             control={control}
@@ -721,6 +751,7 @@ const CV = (props) => {
                             }
                             defaultValue={idioma.nivelEscrito}
                         />
+                        <p className={classes.label}>NIVEL COMPRENSIÓN</p>
                         <Controller 
                             name='nivelComprension'
                             control={control}
@@ -734,6 +765,7 @@ const CV = (props) => {
                             }
                             defaultValue={idioma.nivelComprension}
                         />
+                        <p className={classes.label}>COMENTARIO</p>
                         <Controller 
                             name='comentarioIdioma'
                             control={control}
@@ -856,6 +888,7 @@ const CV = (props) => {
                         </div>
                     </Grid>
                         <Grid item xs={12}>
+                        <p className={classes.label}>COMENTARIO</p>
                             <Controller 
                                 name='comentarioOtros'
                                 control={control}
@@ -953,7 +986,7 @@ const CV = (props) => {
     return(
         <div className={classes.container}>
             {candidato && <h1>CV de {candidato.nombre}</h1>}
-            {renderButtons()}
+            {user.role === 'admin' && renderButtons()}
             <div className={classes.card}>
                 <AppBar position='static' color='default'>
                     <Tabs

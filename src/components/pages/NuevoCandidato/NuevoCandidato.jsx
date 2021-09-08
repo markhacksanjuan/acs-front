@@ -74,11 +74,17 @@ const NuevoCandidato = () => {
 
     const onSubmit = async data => {
         console.log(data)
-        // const newFoto = new FormData()
-        // newFoto.append('fotografia', foto)
-        // const response = await cvService.createCV(data, newFoto)
-        // const responseFoto = await cvService.addFoto(newFoto, response._id)
-        // history.push('/candidatos')
+        try{
+            const response = await cvService.createCV(data)
+            if(foto){
+                const newFoto = new FormData()
+                newFoto.append('fotografia', foto)
+                await cvService.addFoto(newFoto, response._id)
+            }
+            history.push('/candidatos')
+        }catch(e) {
+
+        }
     }
     const onChangeFoto = e => {
         setFoto(e.target.files[0])
@@ -117,7 +123,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Nombre'
-                                    required
                                     id='nombre'
                                     fullWidth
                                     disableUnderline={true}
@@ -135,7 +140,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Primer Apellido'
-                                    required
                                     id='apellido1'
                                     fullWidth
                                     disableUnderline={true}
@@ -153,7 +157,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Segundo Apellido'
-                                    required
                                     id='apellido2'
                                     fullWidth
                                     disableUnderline={true}
@@ -171,7 +174,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='email'
                                     placeholder='Correo Electrónico'
-                                    required
                                     id='email'
                                     fullWidth
                                     disableUnderline={true}
@@ -189,7 +191,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Teléfono'
-                                    required
                                     id='telefono'
                                     fullWidth
                                     disableUnderline={true}
@@ -207,7 +208,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Fecha de nacimiento'
-                                    required
                                     id='nacimiento'
                                     fullWidth
                                     disableUnderline={true}
@@ -225,7 +225,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Sexo'
-                                    required
                                     id='sexo'
                                     fullWidth
                                     disableUnderline={true}
@@ -243,7 +242,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='País'
-                                    required
                                     id='pais'
                                     fullWidth
                                     disableUnderline={true}
@@ -261,7 +259,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Provincia'
-                                    required
                                     id='provincia'
                                     fullWidth
                                     disableUnderline={true}
@@ -282,7 +279,6 @@ const NuevoCandidato = () => {
                                         accept: '.jpg'
                                     }}
                                     placeholder='Fotografia'
-                                    required
                                     id='fotografia'
                                     fullWidth
                                     disableUnderline={true}
@@ -357,7 +353,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Comentario'
-                                    required
                                     id='comentarioEstudio'
                                     fullWidth
                                     disableUnderline={true}
@@ -377,7 +372,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Ultimo año'
-                                    required
                                     id='ultimoAno'
                                     fullWidth
                                     disableUnderline={true}
@@ -424,7 +418,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Nombre del estudio'
-                                    required
                                     id='nombreEstudio'
                                     fullWidth
                                     disableUnderline={true}
@@ -442,7 +435,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Centro'
-                                    required
                                     id='centro'
                                     fullWidth
                                     disableUnderline={true}
@@ -460,7 +452,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Fecha de inicio'
-                                    required
                                     id='desdeEstudio'
                                     fullWidth
                                     disableUnderline={true}
@@ -478,7 +469,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Fecha de finalización'
-                                    required
                                     id='hastaEstudio'
                                     fullWidth
                                     disableUnderline={true}
@@ -496,7 +486,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='number'
                                     placeholder='Horas de estudio'
-                                    required
                                     id='horasEstudio'
                                     fullWidth
                                     disableUnderline={true}
@@ -514,7 +503,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Comentario'
-                                    required
                                     id='comentarioEstudio2'
                                     fullWidth
                                     disableUnderline={true}
@@ -541,7 +529,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Idioma'
-                                    required
                                     id='idioma'
                                     fullWidth
                                     disableUnderline={true}
@@ -559,7 +546,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Titulacion idioma'
-                                    required
                                     id='titulo'
                                     fullWidth
                                     disableUnderline={true}
@@ -600,7 +586,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Nivel de escritura'
-                                    required
                                     id='nivelEscrito'
                                     fullWidth
                                     disableUnderline={true}
@@ -624,7 +609,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Nivel de comprensión'
-                                    required
                                     id='nivelComprension'
                                     fullWidth
                                     disableUnderline={true}
@@ -648,7 +632,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Comentario'
-                                    required
                                     id='comentarioIdioma'
                                     fullWidth
                                     disableUnderline={true}
@@ -675,7 +658,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Empresa'
-                                    required
                                     id='empresa'
                                     fullWidth
                                     disableUnderline={true}
@@ -693,7 +675,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Puesto'
-                                    required
                                     id='puesto'
                                     fullWidth
                                     disableUnderline={true}
@@ -711,7 +692,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Responsabilidades'
-                                    required
                                     id='responsabilidades'
                                     fullWidth
                                     disableUnderline={true}
@@ -729,7 +709,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Descripción del puesto'
-                                    required
                                     id='descripcion'
                                     fullWidth
                                     disableUnderline={true}
@@ -747,7 +726,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Inicio del trabajo'
-                                    required
                                     id='desdeExperiencia'
                                     fullWidth
                                     disableUnderline={true}
@@ -765,7 +743,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='date'
                                     placeholder='Fin del trabajo'
-                                    required
                                     id='hastaExperiencia'
                                     fullWidth
                                     disableUnderline={true}
@@ -783,7 +760,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Descripción del puesto'
-                                    required
                                     id='descripcion'
                                     fullWidth
                                     disableUnderline={true}
@@ -855,7 +831,6 @@ const NuevoCandidato = () => {
                                     {...field}
                                     type='text'
                                     placeholder='Comentario'
-                                    required
                                     id='comentarioOtros'
                                     fullWidth
                                     disableUnderline={true}

@@ -13,10 +13,15 @@ import NuevaOferta from './components/pages/NuevaOferta/NuevaOferta'
 import Ofertas from './components/pages/Ofertas/Ofertas'
 import AddCsv from './components/pages/AddCsv/AddCsv'
 import Oferta from './components/pages/Oferta/Oferta'
+import Recruiters from './components/pages/Recruiters/Recruiters'
+import User from './components/pages/User/User'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import NuevoRecruiter from './components/pages/NuevoRecruiter/NuevoRecruiter'
 
 const App = () => {
   const [idCV, setIdCV] = useState()
   const [idOferta, setIdOferta] = useState()
+  const [idRecruiter, setIdRecruiter] = useState()
   const [user, setUser] = useState()
   const [loggedIn, setLoggedIn] = useState()
 
@@ -42,15 +47,19 @@ const App = () => {
               <Home setUser={setUser} />
             )
           }} />
-          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/dashboard' component={() => {
+            return(
+              <Dashboard user={user} />
+            )
+          }} />
           <Route exact path='/candidatos' component={() => {
             return(
-              <Candidatos setIdCV={setIdCV} />
+              <Candidatos setIdCV={setIdCV} user={user} />
             )
           }} />
           <Route exact path='/cv/:id' component={() => {
             return(
-              <CV idCV={idCV} />
+              <CV idCV={idCV} user={user} />
             )
           }} />
           <Route exact path='/newCV' component={NuevoCandidato} />
@@ -71,6 +80,22 @@ const App = () => {
               <Oferta idOferta={idOferta} />
             )
           }} />
+          <PrivateRoute exact path='/recruiters' user={user} component={() => {
+            return(
+              <Recruiters setIdRecruiter={setIdRecruiter} />
+            )
+          }} />
+          <PrivateRoute exact path='/recruiter/:id' user={user} component={() => {
+            return(
+              <User idRecruiter={idRecruiter} />
+            )
+          }} />
+          <PrivateRoute exact path='/newRecruiter' user={user} component={() => {
+            return(
+              <NuevoRecruiter />
+            )
+          }}
+          />
         </Switch>
       </Router>
       

@@ -1,24 +1,14 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        paddingTop: '35px',
+        padding: '35px'
     },
-    card: {
-        width: '350px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        border: `1px solid ${theme.palette.button.azul}`,
-        marginRight: '20px',
-        marginLeft: '20px',
-        paddingBottom: '20px',
-        borderRadius: '6px',
-        paddingLeft: '20px',
-        paddingRight: '20px'
+    form: {
+        width: '500px'
     },
     submit: {
         backgroundColor: theme.palette.button.azul,
@@ -33,13 +23,10 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         border: `2px solid ${theme.palette.text.blanco}`
     },
-    containerCards: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        marginTop: '20px',
-    }
+    label: {
+        fontWeight: 'bold',
+        color: theme.palette.color.gris,
+        marginBottom: '5px'
+    },
 }))
-
 export default useStyles

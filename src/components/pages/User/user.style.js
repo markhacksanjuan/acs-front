@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -60,13 +60,6 @@ const useStyles = makeStyles(theme => ({
     },
     form: {
         // marginTop: '35px'
-    },
-    label: {
-        fontWeight: 'bold',
-        color: theme.palette.color.gris,
-        marginBottom: '5px'
-    },
-
+    }
 }))
-
 export default useStyles

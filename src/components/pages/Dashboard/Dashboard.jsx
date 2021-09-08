@@ -8,7 +8,7 @@ import CVCard from '../../CVCard/CVCard'
 
 import { Button } from '@material-ui/core'
 
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
     const classes = useStyles()
     const history = useHistory()
 
@@ -91,6 +91,36 @@ const Dashboard = () => {
             </>
         )
     }
+    const renderButtonRecruiter = () => {
+        return(
+            <>
+                <Button
+                    type='submit'
+                    fullWidth
+                    variant='contained'
+                    className={classes.submit}
+                    onClick={() => history.push('/recruiters')}
+                >
+                    Ver Recruiters
+                </Button>
+            </>
+        )
+    }
+    const renderButtonNewRecruiter = () => {
+        return(
+            <>
+                <Button
+                    type='submit'
+                    fullWidth
+                    variant='contained'
+                    className={classes.submit}
+                    onClick={() => history.push('/newRecruiter')}
+                >
+                    Añadir nuevo Recruiter
+                </Button>
+            </>
+        )
+    }
     return(
         <div className={classes.container}>
             <h1>ACS Informáticos</h1>
@@ -99,13 +129,18 @@ const Dashboard = () => {
                     <h3>Candidatos</h3>
                     {renderButtonCandidato()}
                     {renderButtonNewCandidato()}
-                    {renderButtonCandidatoCsv()}
+                    {/* {renderButtonCandidatoCsv()} */}
                 </div>
                 <div className={classes.card}>
                     <h3>Ofertas</h3>
                     {renderButtonOferta()}
                     {renderButtonNewOferta()}
                 </div>
+                {user.role === 'admin' && <div className={classes.card}>
+                    <h3>Recruiters</h3>
+                    {renderButtonRecruiter()}
+                    {renderButtonNewRecruiter()}
+                </div>}
 
             </div>
         </div>

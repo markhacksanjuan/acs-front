@@ -64,8 +64,8 @@ const Oferta = (props) => {
                     <p>Puesto: {oferta.puesto}</p>
                     <p>Ubicación: {oferta.ubicacion}</p>
                     <p>Servicio: {oferta.servicio}</p>
-                    <p>Idiomas: {renderIdiomas()}</p>
-                    <p>Tecnologías: {renderTecnologias()}</p>
+                    <p>Idiomas: {oferta.idiomas}</p>
+                    <p>Tecnologías: {oferta.tecnologias}</p>
                 </>
             )
         }else {

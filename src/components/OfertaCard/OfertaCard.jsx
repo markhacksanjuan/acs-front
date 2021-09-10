@@ -26,8 +26,8 @@ const OfertaCard = ({ ofertas, setIdOferta }) => {
                     <p>Puesto: {oferta.puesto}</p>
                     <p>Ubicación: {oferta.ubicacion}</p>
                     <p>Desplazamientos: {oferta.desplazamientos}</p>
-                    <p>Idiomas: {renderIdiomas(oferta.idiomas)}</p>
-                    <p>Tecnologías: {renderTecnologias(oferta.tecnologias)}</p>
+                    <p>Idiomas: {oferta.idiomas}</p>
+                    <p>Tecnologías: {oferta.tecnologias}</p>
                 </div>
             )
         })

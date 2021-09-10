@@ -31,6 +31,7 @@ const NuevoCandidato = () => {
             sexo: '',
             pais: '',
             provincia: '',
+            tecnologias: '',
             foto,
             titulacion: '',
             especialidad: '',
@@ -262,6 +263,25 @@ const NuevoCandidato = () => {
                                     id='provincia'
                                     fullWidth
                                     disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <p className={classes.label}>TECNOLOGíAS:</p>
+                        <Controller 
+                            name='tecnologias'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='text'
+                                    placeholder='Tecnologías'
+                                    id='tecnologias'
+                                    fullWidth
+                                    disableUnderline={true}
+                                    inputComponent='textarea'
+                                    required
                                 />
                             }
                         />

@@ -38,6 +38,7 @@ const CV = (props) => {
     const [editOtrosDatos, setEditOtrosDatos] = useState(false)
 
     const user = props.user
+    console.log(candidato)
     let idCV = props.idCV
     if(!idCV){
         const pathnameArr = history.location.pathname.split('/')
@@ -182,10 +183,25 @@ const CV = (props) => {
                                 type='text'
                                 fullWidth
                                 disableUnderline={true}
+                                disabled
                             />
                         }
                         defaultValue={candidato.dni}
                     />
+                    <p className={classes.label}>FECHA NACIMIENTO</p>
+                        <Controller 
+                            name='nacimiento'
+                            control={control}
+                            render={({ field }) => 
+                                <Input 
+                                    {...field}
+                                    type='date'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                            defaultValue={candidato.nacimiento}
+                        />
                     <p className={classes.label}>EMAIL</p>
                     <Controller 
                         name='email'
@@ -199,6 +215,20 @@ const CV = (props) => {
                             />
                         }
                         defaultValue={candidato.email}
+                    />
+                    <p className={classes.label}>TELEFONO</p>
+                    <Controller 
+                        name='telefono'
+                        control={control}
+                        render={({ field }) => 
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={candidato.telefono}
                     />
                     <p className={classes.label}>PAIS</p>
                     <Controller 
@@ -242,6 +272,35 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.sexo}
                     />
+                    <p className={classes.label}>TECNOLOGIAS</p>
+                    <Controller 
+                        name='tecnologias'
+                        control={control}
+                        render={({ field }) => 
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={candidato.tecnologias}
+                    />
+                    <p className={classes.label}>ORIGEN</p>
+                    <Controller 
+                        name='origen'
+                        control={control}
+                        render={({ field }) => 
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                                disabled
+                            />
+                        }
+                        defaultValue={candidato.origen}
+                    />
                     <Button 
                         type='submit'
                         fullWidth
@@ -265,10 +324,14 @@ const CV = (props) => {
                     <p>Primer Apellido: {candidato.apellido1}</p>
                     <p>Segundo Apellido: {candidato.apellido2}</p>
                     <p>DNI: {candidato.dni}</p>
+                    <p>Fecha Nacimiento: {getDate(candidato.nacimiento)}</p>
                     <p>E-mail: {candidato.email}</p>
+                    <p>Teléfono: {candidato.telefono}</p>
                     <p>País: {candidato.pais}</p>
                     <p>Provincia: {candidato.provincia}</p>
                     <p>Sexo: {candidato.sexo}</p>
+                    <p>Tecnologias: {candidato.tecnologias}</p>
+                    <p>Origen: {candidato.origen}</p>
                 </>
             )
         }else {
@@ -412,6 +475,7 @@ const CV = (props) => {
     }
     const renderEstudio2Form = () => {
         const estudios = () => {
+            console.log(candidato)
             return candidato.estudios2.map(estudio => {
                 return(
                     <form key={estudio._id} onSubmit={handleSubmit((data) => onSubmitEstudio2(data, estudio._id))} >

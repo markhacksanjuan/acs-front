@@ -17,6 +17,7 @@ import Recruiters from './components/pages/Recruiters/Recruiters'
 import User from './components/pages/User/User'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import NuevoRecruiter from './components/pages/NuevoRecruiter/NuevoRecruiter'
+import NuevaOfertaCsv from './components/pages/NuevaOfertaCsv/NuevaOfertaCsv'
 
 const App = () => {
   const [idCV, setIdCV] = useState()
@@ -75,9 +76,14 @@ const App = () => {
               <Ofertas setIdOferta={setIdOferta} />
             )
             }} />
-          <Route exact path='/oferta/:id' component ={() => {
+          <Route exact path='/oferta/:id' component={() => {
             return(
               <Oferta idOferta={idOferta} />
+            )
+          }} />
+          <Route exact path='/newOfertaCsv' component={() => {
+            return(
+              <NuevaOfertaCsv />
             )
           }} />
           <PrivateRoute exact path='/recruiters' user={user} component={() => {

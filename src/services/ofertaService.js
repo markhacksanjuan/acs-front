@@ -40,11 +40,20 @@ const deleteOneOferta = async (id) => {
         console.error(e)
     }
 }
+const addCsv = async csv => {
+    try{
+        const response = await http.post('/addCsv', csv)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
 
 const ofertaService = {
     createOferta,
     getAllOfertas,
     getOneOferta,
-    deleteOneOferta
+    deleteOneOferta,
+    addCsv
 }
 export default ofertaService

@@ -87,7 +87,7 @@ const Candidatos = (props) => {
                                     fullWidth
                                     disableUnderline={true}
                                     onChange={e => onChange(e)}
-                                    placeholder='Búsqueda por nombre'
+                                    placeholder='Búsqueda por Tecnología'
                                 />
                             }
                         />
@@ -102,8 +102,13 @@ const Candidatos = (props) => {
     let filteredCandidatos 
     if(cvs) {
         filteredCandidatos = cvs.filter(cv => {
-            const name = cv.nombre.toLowerCase()
-            return name.includes(searchName)
+            // console.log(cv.tecnologias)
+            const tecno = cv.tecnologias?.toLowerCase()
+            if(!tecno){
+                return
+            }else {
+                return tecno.includes(searchName)
+            }
         })
     }
     

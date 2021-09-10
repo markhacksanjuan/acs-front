@@ -19,9 +19,8 @@ const CVCard = ({ cvs, setIdCV }) => {
                         <p>Nombre: {cv.nombre} {cv.apellido1} {cv.apellido2}</p>
                         <p>DNI: {cv.dni}</p>
                         <p>email: {cv.email}</p>
-                        <p>Sexo: {cv.sexo}</p>
                         <p>Provincia: {cv.provincia}</p>
-                        <p>País: {cv.pais}</p>
+                        <p>Tecnologías: {cv.tecnologias}</p>
                     </div>
                     <div>
                         {/* {renderEstudios(cv.estudios)} */}

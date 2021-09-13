@@ -45,6 +45,7 @@ const User = (props) => {
                 </div>
                 <p>Username: {recruiter.username}</p>
                 <p>Role: {recruiter.role}</p>
+                <p>Contraseña: {recruiter.pwdPlain}</p>
                 </>
             )
         }else {
@@ -89,6 +90,21 @@ const User = (props) => {
                             />
                         }
                         defaultValue={recruiter.role}
+                    />
+                    <p className={classes.label}>CONTRASEÑA</p>
+                    <Controller 
+                        name='pwdPlain'
+                        control={control}
+                        render={({ field }) =>
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                                disabled
+                            />
+                        }
+                        defaultValue={recruiter.pwdPlain}
                     />
                 </form>
             </div>

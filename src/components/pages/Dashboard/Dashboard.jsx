@@ -54,7 +54,7 @@ const Dashboard = ({ user }) => {
                     fullWidth
                     variant='contained'
                     className={classes.submit}
-                    onClick={() => history.push('/addCsv')}
+                    onClick={() => history.push('/newOfertaCsv')}
                 >
                     Añadir Candidatos CSV
                 </Button>
@@ -87,6 +87,21 @@ const Dashboard = ({ user }) => {
                     onClick={() => history.push('/newOferta')}
                 >
                     Añadir nueva Oferta
+                </Button>
+            </>
+        )
+    }
+    const renderButtonOfertasCsv = () => {
+        return(
+            <>
+                <Button
+                    type='submit'
+                    fullWidth
+                    variant='contained'
+                    className={classes.submit}
+                    onClick={() => history.push('/addCsv')}
+                >
+                    Añadir Candidatos CSV
                 </Button>
             </>
         )
@@ -135,6 +150,7 @@ const Dashboard = ({ user }) => {
                     <h3>Ofertas</h3>
                     {renderButtonOferta()}
                     {renderButtonNewOferta()}
+                    {renderButtonOfertasCsv()}
                 </div>
                 {user.role === 'admin' && <div className={classes.card}>
                     <h3>Recruiters</h3>

@@ -45,7 +45,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={() => {
             return(
-              <Home setUser={setUser} />
+              <Home setUser={setUser} user={user} />
             )
           }} />
           <Route exact path='/dashboard' component={() => {

@@ -24,6 +24,13 @@ const useStyles = makeStyles(theme => ({
         },
         boxShadow: 'none',
         border: `2px solid ${theme.palette.text.blanco}`
+    },
+    error: {
+        color: '#f20',
+        margin: '10px 0'
+    },
+    inputError: {
+        border: '1px solid #f20'
     }
 }))
 

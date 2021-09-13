@@ -11,7 +11,7 @@ Grid } from '@material-ui/core'
 import authService from '../../../services/authService'
 
 
-const Home = ({ setUser }) => {
+const Home = ({ setUser, user }) => {
     const { control, handleSubmit, setValue } = useForm({
         defaultValues: {
             username: '',
@@ -23,16 +23,26 @@ const Home = ({ setUser }) => {
     const history = useHistory()
     const classes = useStyles()
 
+    if (user){
+        history.push('/dashboard')
+    }
+
     useEffect(() => {
 
-    }, [error])
+    }, [])
 
     const onSubmit = async (data, e) => {
         try{
-            const user = await authService.login(data)
-            if(user){
-                setUser(user.user)
+            const response = await authService.login(data)
+            console.log(response)
+            if(response.user){
+                setUser(response.user)
                 history.push('/dashboard')
+            }
+            if(response.errorMessage){
+                setError(response.errorMessage)
+                setValue('username', '')
+                setValue('password', '')
             }
         }catch(e) {
             console.error(e)
@@ -58,6 +68,7 @@ const Home = ({ setUser }) => {
                                         fullWidth
                                         disableUnderline={true}
                                         autoFocus
+                                        className={error && classes.inputError}
                                     />
                                 }
                             />
@@ -75,6 +86,7 @@ const Home = ({ setUser }) => {
                                         id='password'
                                         fullWidth
                                         disableUnderline
+                                        className={error && classes.inputError}
                                     />
                                 }
                             />
@@ -97,6 +109,7 @@ const Home = ({ setUser }) => {
     return(
         <div className={classes.container}>
             <h1>ACS Informáticos</h1>
+           {error && <p className={classes.error}>{error}</p> }
             <div className={classes.card}>
                 {renderForm()}
             </div>

@@ -10,17 +10,26 @@ import { Input,
 
 const NuevoRecruiter = () => {
     const classes = useStyles()
-    const { control, handleSubmit } = useForm({
+    const { control, handleSubmit, setValue } = useForm({
         defaultValues: {
             username: '',
             password: ''
         }
     })
     const history = useHistory()
+    const [error, setError] = useState()
 
     const onSubmit = async data => {
         const response = await userService.createUser(data)
-        history.push('/recruiters')
+        console.log(response)
+        if(response.message){
+            history.push('/recruiters')
+        }
+        if(response.errorMessage){
+            setError(response.errorMessage)
+            setValue('username', '')
+            setValue('password', '')
+        }
     }
     const renderRecruiterForm = () => {
         return (
@@ -38,6 +47,7 @@ const NuevoRecruiter = () => {
                         fullWidth
                         disableUnderline={true}
                         autoFocus
+                        className={error && classes.inputError}
                         />
                     }
                 />
@@ -53,6 +63,7 @@ const NuevoRecruiter = () => {
                         required
                         fullWidth
                         disableUnderline={true}
+                        className={error && classes.inputError}
                         />
                     }
                 />
@@ -63,6 +74,7 @@ const NuevoRecruiter = () => {
     return(
         <div className={classes.container}>
             <h1>Nuevo Recruiter</h1>
+            {error && <p className={classes.error}>{error}</p> }
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
                 {renderRecruiterForm()}
                 <Button 

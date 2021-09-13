@@ -28,5 +28,12 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.color.gris,
         marginBottom: '5px'
     },
+    error: {
+        color: '#f20',
+        margin: '10px 0'
+    },
+    inputError: {
+        border: '1px solid #f20'
+    }
 }))
 export default useStyles

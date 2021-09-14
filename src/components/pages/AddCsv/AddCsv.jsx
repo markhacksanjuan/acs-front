@@ -26,7 +26,7 @@ const AddCsv = () => {
     const onSubmit = async data => {
         const newData = new FormData()
         newData.append('csv', csv)
-        const response = await cvService.addCsv(newData)
+        await cvService.addCsv(newData)
         history.push('/candidatos')
     }
     const onChangeCsv = e => {

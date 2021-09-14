@@ -78,7 +78,7 @@ const App = () => {
             }} />
           <Route exact path='/oferta/:id' component={() => {
             return(
-              <Oferta idOferta={idOferta} />
+              <Oferta idOferta={idOferta} user={user} />
             )
           }} />
           <Route exact path='/newOfertaCsv' component={() => {

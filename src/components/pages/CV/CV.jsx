@@ -119,8 +119,7 @@ const CV = (props) => {
 
     // --------- INFORMACION CANDIDATO -----------
     const onSubmitInfo = async (data) => {
-        const response = await candidatoService.updateCandidato(idCV, data)
-        console.log(response)
+        await candidatoService.updateCandidato(idCV, data)
         setEditInfo(false)
     }
     const renderCandidatoForm = () => {
@@ -342,8 +341,7 @@ const CV = (props) => {
 
     //----------------- ESTUDIO ---------------------
     const onSubmitEstudio = async (data, id) => {
-        const response = await estudioService.updateEstudio(id, data)
-        console.log(response)
+        await estudioService.updateEstudio(id, data)
         setEditEstudios(false)
     }
     const renderEstudiosForm = () => {
@@ -469,8 +467,7 @@ const CV = (props) => {
 
     // ------------- OTROS ESTUDIOS --------------
     const onSubmitEstudio2 = async (data, id) => {
-        const response = await otrosEstudiosService.updateOtrosEstudios(id, data)
-        console.log(response)
+        await otrosEstudiosService.updateOtrosEstudios(id, data)
         setEditOtrosEstudios(false)
     }
     const renderEstudio2Form = () => {
@@ -610,8 +607,7 @@ const CV = (props) => {
     
     // ---------------- EXPERIENCIA -----------------------
     const onSubmitExp = async (data, id) => {
-        const response = await expService.updateExp(id, data)
-        console.log(response)
+        await expService.updateExp(id, data)
         setEditExp(false)
     }
     const renderExpForm = () => {
@@ -750,8 +746,7 @@ const CV = (props) => {
 
     // ------------------ IDIOMAS -----------------------
     const onSubmitIdioma = async (data, id) => {
-        const response = await idiomasService.updateIdiomas(id, data)
-        console.log(response)
+        await idiomasService.updateIdiomas(id, data)
         setEditIdiomas(false)
     }
     const renderIdiomaForm = () => {
@@ -890,8 +885,7 @@ const CV = (props) => {
 
     // ----------------- OTROS DATOS ---------------------
     const onSubmitOtrosDatos = async (data, id) => {
-        const response = await otrosDatosService.updateOtrosDatos(id, data)
-        console.log(response)
+        await otrosDatosService.updateOtrosDatos(id, data)
         setEditOtrosDatos(false)
     }
     const renderOtrosDatosForm = () => {
@@ -1016,9 +1010,9 @@ const CV = (props) => {
 
 
     // ------------- BOTONES ------------
-    const onEdit = () => {
-        history.push('/editCV')
-    }
+    // const onEdit = () => {
+    //     history.push('/editCV')
+    // }
     const onDelete = async (e) => {
         e.preventDefault()
         await cvService.deleteCV(idCV)

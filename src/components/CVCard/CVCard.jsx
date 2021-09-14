@@ -22,36 +22,6 @@ const CVCard = ({ cvs, setIdCV }) => {
                         <p>Provincia: {cv.provincia}</p>
                         <p>Tecnologías: {cv.tecnologias}</p>
                     </div>
-                    <div>
-                        {/* {renderEstudios(cv.estudios)} */}
-                    </div>
-                    <div>
-                        {/* {renderEstudios2(cv.estudios2)} */}
-                    </div>
-                </div>
-            )
-        })
-    }
-
-    const renderEstudios = estudios => {
-        return estudios.map(estudio => {
-            return(
-                <div key={estudio._id}>
-                    <p>Titulación: {estudio.titulacion}</p>
-                    <p>Último año: {estudio.ultimoAno}</p>
-                    <p>Especialidad: {estudio.especialidad}</p>
-                    <p>Comentario: {estudio.comentarioEstudio}</p>
-                    <p>Estudios finalizados: {estudio.estudiosFinalizados ? <span>Sí</span> : <span>No</span>}</p>
-                </div>
-            )
-        })
-    }
-
-    const renderEstudios2 = estudios => {
-        return estudios.map(estudio => {
-            return(
-                <div key={estudio._id}>
-                    <p>Centro: {estudio.centro}</p>
                 </div>
             )
         })

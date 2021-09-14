@@ -9,12 +9,12 @@ import CVCard from '../../CVCard/CVCard'
 
 import { Button,
 Input,
-Grid,
-Chip } from '@material-ui/core'
+Grid } from '@material-ui/core'
+// import { Chip } from '@material-ui/core'
 
 const Candidatos = (props) => {
     const classes = useStyles()
-    const tecnologias = ['Javascript', 'React']
+    // const tecnologias = ['Javascript', 'React']
     const [cvs, setCvs] = useState()
     const [searchName, setSearchName] = useState()
     const history = useHistory()
@@ -24,9 +24,9 @@ const Candidatos = (props) => {
         }
     })
     const setIdCV = props.setIdCV
-    const [chipData, setChipData] = useState([
-        { key: 0, label: 'Javascript'}
-    ])
+    // const [chipData, setChipData] = useState([
+    //     { key: 0, label: 'Javascript'}
+    // ])
 
     const getCVs = async () => {
         const cvS = await cvService.getCV()
@@ -37,40 +37,40 @@ const Candidatos = (props) => {
         getCVs()
     }, [])
 
-    const renderChips = () => {
-        return chipData.map(data => {
-            return(
-                <li key={data.key}>
-                    <Chip 
-                    label={data.label} 
-                    onDelete={handleDelete(data)}
-                    />
-                </li>
-            )
-        })
-    }
-    const handleDelete = (chipToDelete) => () => {
-        setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
-      };
+    // const renderChips = () => {
+    //     return chipData.map(data => {
+    //         return(
+    //             <li key={data.key}>
+    //                 <Chip 
+    //                 label={data.label} 
+    //                 onDelete={handleDelete(data)}
+    //                 />
+    //             </li>
+    //         )
+    //     })
+    // }
+    // const handleDelete = (chipToDelete) => () => {
+    //     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+    //   };
 
-    const onDelete = async (e) => {
-        const response = await cvService.deleteCsv()
-        console.log(response)
-        history.push('/dashboard')
-    }
-    const renderButtons = () => {
-        return(
-            <Button
-            variant='contained'
-            className={classes.deleteBtn}
-            onClick={(e) => {
-                onDelete(e)
-            }}
-            >
-                Delete all from csv
-            </Button>
-        )
-    }
+    // const onDelete = async (e) => {
+    //     const response = await cvService.deleteCsv()
+    //     console.log(response)
+    //     history.push('/dashboard')
+    // }
+    // const renderButtons = () => {
+    //     return(
+    //         <Button
+    //         variant='contained'
+    //         className={classes.deleteBtn}
+    //         onClick={(e) => {
+    //             onDelete(e)
+    //         }}
+    //         >
+    //             Delete all from csv
+    //         </Button>
+    //     )
+    // }
     const renderInput = () => {
         return(
             <>
@@ -105,7 +105,7 @@ const Candidatos = (props) => {
             // console.log(cv.tecnologias)
             const tecno = cv.tecnologias?.toLowerCase()
             if(!tecno){
-                return
+                return null
             }else {
                 return tecno.includes(searchName)
             }

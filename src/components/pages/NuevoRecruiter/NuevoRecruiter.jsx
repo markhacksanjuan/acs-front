@@ -19,9 +19,12 @@ const NuevoRecruiter = () => {
     const history = useHistory()
     const [error, setError] = useState()
 
+    useEffect(() => {
+
+    }, [])
+
     const onSubmit = async data => {
         const response = await userService.createUser(data)
-        console.log(response)
         if(response.message){
             history.push('/recruiters')
         }

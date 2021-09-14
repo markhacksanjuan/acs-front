@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useForm, useFormState, Controller } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import useStyles from './nuevoCandidato.style'
 
 import cvService from '../../../services/cvService'
 
-import { Alert } from '@material-ui/lab'
+
 import { Input,
 Button,
 Grid,
 Checkbox,
 Select,
-MenuItem,
-RadioGroup,
-Radio } from '@material-ui/core'
+MenuItem } from '@material-ui/core'
 
 const NuevoCandidato = () => {
     const classes = useStyles()
@@ -62,12 +60,11 @@ const NuevoCandidato = () => {
             comentarioOtros: ''
         }
     })
-    const { dirtyFields } = useFormState({ control })
     const history = useHistory()
 
-    const onChangeTitulacion = (e) => {
-        setTitulacion(e.target.value)
-    }
+    // const onChangeTitulacion = (e) => {
+    //     setTitulacion(e.target.value)
+    // }
 
     useEffect(() => {
 

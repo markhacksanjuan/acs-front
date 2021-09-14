@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './ofertaCard.style'
 
@@ -10,7 +10,6 @@ const OfertaCard = ({ ofertas, setIdOferta }) => {
         setIdOferta(id)
         history.push(`/oferta/${id}`)
     }
-
 
     useEffect(() => {
 
@@ -29,24 +28,6 @@ const OfertaCard = ({ ofertas, setIdOferta }) => {
                     <p>Idiomas: {oferta.idiomas}</p>
                     <p>Tecnologías: {oferta.tecnologias}</p>
                 </div>
-            )
-        })
-    }
-    const renderIdiomas = idiomas => {
-        return idiomas.map(idioma => {
-            return(
-                <>
-                    <span>{idioma}</span>
-                </>
-            )
-        })
-    }
-    const renderTecnologias = tecnologias => {
-        return tecnologias.map(tecnologia => {
-            return(
-                <>
-                    <span>{tecnologia}</span>
-                </>
             )
         })
     }

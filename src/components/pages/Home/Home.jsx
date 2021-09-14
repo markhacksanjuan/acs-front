@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { useForm, useFormState, Controller } from 'react-hook-form'
 import useStyles from './home.style'
 
-import { Alert } from '@material-ui/lab'
 import { Input,
 Button,
 Grid } from '@material-ui/core'

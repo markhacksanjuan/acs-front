@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import useStyles from './recruiters.style'
 import userService from '../../../services/userService'
 
@@ -7,7 +7,7 @@ import RecruiterCard from '../../RecruiterCard/RecruiterCard'
 
 const Recruiters = ({ setIdRecruiter }) => {
     const classes = useStyles()
-    const history = useHistory()
+    // const history = useHistory()
     const [recruiters, setRecruiters] = useState()
 
     const getRecruiters = async () => {

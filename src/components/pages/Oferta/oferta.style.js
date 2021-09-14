@@ -60,6 +60,11 @@ const useStyles = makeStyles(theme => ({
     },
     form: {
         // marginTop: '35px'
+    },
+    label: {
+        fontWeight: 'bold',
+        color: theme.palette.color.gris,
+        marginBottom: '5px'
     }
 }))
 export default useStyles

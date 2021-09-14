@@ -27,7 +27,6 @@ const User = (props) => {
     }, [])
     const getRecruiter = async id => {
             const newRecruiter = await userService.getOneUser(id)
-            console.log(newRecruiter)
             setRecruiter(newRecruiter)
     }
     const onClickEdit = () => {

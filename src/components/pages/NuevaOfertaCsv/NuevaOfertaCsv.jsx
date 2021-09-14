@@ -26,9 +26,8 @@ const NuevaOfertaCsv = () => {
     const onSubmit = async data => {
         const newData = new FormData()
         newData.append('csv', csv)
-        const response = await ofertaService.addCsv(newData)
-        console.log(response)
-        // history.push('/ofertas')
+        await ofertaService.addCsv(newData)
+        history.push('/ofertas')
     }
     const onChangeCsv = e => {
         setCsv(e.target.files[0])

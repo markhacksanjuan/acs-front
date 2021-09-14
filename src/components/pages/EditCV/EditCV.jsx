@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useForm, useFormState, Controller } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import useStyles from './editCV.style'
 
 import cvService from '../../../services/cvService'
 
-import { Alert } from '@material-ui/lab'
 import { Input,
 Button,
 Grid,

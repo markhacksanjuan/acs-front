@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './dashboard.style'
-
-import cvService from '../../../services/cvService'
-
-import CVCard from '../../CVCard/CVCard'
 
 import { Button } from '@material-ui/core'
 
@@ -46,21 +42,21 @@ const Dashboard = ({ user }) => {
             </>
         )
     }
-    const renderButtonCandidatoCsv = () => {
-        return(
-            <>
-                <Button
-                    type='submit'
-                    fullWidth
-                    variant='contained'
-                    className={classes.submit}
-                    onClick={() => history.push('/newOfertaCsv')}
-                >
-                    Añadir Ofertas CSV
-                </Button>
-            </>
-        )
-    }
+    // const renderButtonCandidatoCsv = () => {
+    //     return(
+    //         <>
+    //             <Button
+    //                 type='submit'
+    //                 fullWidth
+    //                 variant='contained'
+    //                 className={classes.submit}
+    //                 onClick={() => history.push('/newOfertaCsv')}
+    //             >
+    //                 Añadir Candidatos CSV
+    //             </Button>
+    //         </>
+    //     )
+    // }
     const renderButtonOferta = () => {
         return(
             <>
@@ -101,7 +97,7 @@ const Dashboard = ({ user }) => {
                     className={classes.submit}
                     onClick={() => history.push('/addCsv')}
                 >
-                    Añadir Candidatos CSV
+                    Añadir Ofertas CSV
                 </Button>
             </>
         )

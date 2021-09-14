@@ -56,7 +56,7 @@ const Dashboard = ({ user }) => {
                     className={classes.submit}
                     onClick={() => history.push('/newOfertaCsv')}
                 >
-                    Añadir Candidatos CSV
+                    Añadir Ofertas CSV
                 </Button>
             </>
         )

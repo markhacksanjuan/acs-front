@@ -35,24 +35,6 @@ const Oferta = (props) => {
     // --------------- OFERTA -------------
     const renderOferta = () => {
         if(oferta) {
-            const renderIdiomas = () => {
-                return oferta.idiomas.map((idioma, key) => {
-                    return (
-                        <>
-                            <span id={key}>{idioma}, </span>
-                        </>
-                    )
-                })
-            }
-            const renderTecnologias = () => {
-                return oferta.tecnologias.map((tecnologia, key) => {
-                    return (
-                        <>
-                            <span id={key}>{tecnologia}, </span>
-                        </>
-                    )
-                })
-            }
             return(
                 <>
                     <div className={classes.head}>

@@ -12,9 +12,11 @@ Grid } from '@material-ui/core'
 const NuevaOfertaCsv = () => {
     const classes = useStyles()
     const [csv, setCsv] = useState()
+    const [xls, setXls] = useState()
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            csv
+            csv,
+            xls
         }
     })
     const history = useHistory()
@@ -61,6 +63,45 @@ const NuevaOfertaCsv = () => {
             </>
         )
     }
+
+    const onSubmitXls = async data => {
+        const newData = new FormData()
+        newData.append('xls', xls)
+        await ofertaService.addXls(newData)
+        // history.push('/ofertas')
+    }
+    const onChangeXls = e => {
+        setXls(e.target.files[0])
+    }
+
+    const renderFormXls = () => {
+        return(
+            <>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Controller 
+                            name='xls'
+                            control={control}
+                            render={({ field }) => 
+                                <Input 
+                                    {...field}
+                                    type='file'
+                                    inputProps={{
+                                        accept: ['.xls', '.xlsx']
+                                    }}
+                                    required
+                                    id='xls'
+                                    fullWidth
+                                    disableUnderline={true}
+                                    onChange={e => onChangeXls(e)}
+                                />
+                            }
+                        />
+                    </Grid>
+                </Grid>
+            </>
+        )
+    }
     return(
         <div className={classes.container}>
             <h1>Insertar CSV</h1>
@@ -73,6 +114,17 @@ const NuevaOfertaCsv = () => {
                     className={classes.submit}
                 >
                     Añadir CSV
+                </Button>
+            </form>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmitXls)} encType='multipart/form-data'>
+                {renderFormXls()}
+                <Button 
+                    type='submit'
+                    fullWidth
+                    variant='contained'
+                    className={classes.submit}
+                >
+                    Añadir XLS
                 </Button>
             </form>
         </div>

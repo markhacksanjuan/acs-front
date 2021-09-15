@@ -8,7 +8,8 @@ const useStyles = makeStyles(theme => ({
         padding: '35px'
     },
     form: {
-        width: '500px'
+        width: '500px',
+        marginBottom: '50px'
     },
     submit: {
         backgroundColor: theme.palette.button.azul,

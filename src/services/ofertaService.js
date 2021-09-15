@@ -5,7 +5,7 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.build
+    baseURL: urls.dev
 })
 
 const createOferta = async offer => {
@@ -56,6 +56,14 @@ const addCsv = async csv => {
         console.error(e)
     }
 }
+const addXls = async xls => {
+    try {
+        const response = await http.post('/addXls', xls)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
 
 const ofertaService = {
     createOferta,
@@ -63,6 +71,7 @@ const ofertaService = {
     getOneOferta,
     deleteOneOferta,
     addCsv,
-    updateOneOferta
+    updateOneOferta,
+    addXls
 }
 export default ofertaService

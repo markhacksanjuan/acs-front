@@ -95,7 +95,7 @@ const Dashboard = ({ user }) => {
                     fullWidth
                     variant='contained'
                     className={classes.submit}
-                    onClick={() => history.push('/addCsv')}
+                    onClick={() => history.push('/newOfertaCsv')}
                 >
                     Añadir Ofertas CSV
                 </Button>

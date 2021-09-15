@@ -5,7 +5,7 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.build
+    baseURL: urls.dev
 })
 
 const createOferta = async offer => {

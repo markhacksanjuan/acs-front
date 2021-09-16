@@ -107,6 +107,7 @@ const NuevoCandidato = () => {
                                     fullWidth
                                     disableUnderline={true}
                                     autoFocus
+                                    required
                                 />
                             }
                         />
@@ -124,6 +125,7 @@ const NuevoCandidato = () => {
                                     id='nombre'
                                     fullWidth
                                     disableUnderline={true}
+                                    required
                                 />
                             }
                         />
@@ -141,6 +143,7 @@ const NuevoCandidato = () => {
                                     id='apellido1'
                                     fullWidth
                                     disableUnderline={true}
+                                    required
                                 />
                             }
                         />
@@ -158,6 +161,7 @@ const NuevoCandidato = () => {
                                     id='apellido2'
                                     fullWidth
                                     disableUnderline={true}
+                                    required
                                 />
                             }
                         />
@@ -175,6 +179,7 @@ const NuevoCandidato = () => {
                                     id='email'
                                     fullWidth
                                     disableUnderline={true}
+                                    required
                                 />
                             }
                         />
@@ -192,6 +197,7 @@ const NuevoCandidato = () => {
                                     id='telefono'
                                     fullWidth
                                     disableUnderline={true}
+                                    required
                                 />
                             }
                         />

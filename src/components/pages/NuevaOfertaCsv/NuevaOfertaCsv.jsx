@@ -68,7 +68,7 @@ const NuevaOfertaCsv = () => {
         const newData = new FormData()
         newData.append('xls', xls)
         await ofertaService.addXls(newData)
-        // history.push('/ofertas')
+        history.push('/ofertas')
     }
     const onChangeXls = e => {
         setXls(e.target.files[0])

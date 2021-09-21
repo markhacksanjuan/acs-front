@@ -4,7 +4,7 @@ const urls = {
     build: 'https://acs-back.vercel.app/recruiter'
 }
 const http = axios.create({
-    baseURL: urls.dev
+    baseURL: urls.build
 })
 
 const updateComentario = async (comment, id) => {

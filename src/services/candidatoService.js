@@ -5,7 +5,7 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.dev
+    baseURL: urls.build
 })
 
 const updateCandidato = async (id, candidato) => {

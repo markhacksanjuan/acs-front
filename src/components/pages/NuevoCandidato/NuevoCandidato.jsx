@@ -13,7 +13,7 @@ Checkbox,
 Select,
 MenuItem } from '@material-ui/core'
 
-const NuevoCandidato = () => {
+const NuevoCandidato = ({ setIdCV }) => {
     const classes = useStyles()
     const [foto, setFoto] = useState()
     const [titulacion, setTitulacion] = useState()
@@ -79,7 +79,8 @@ const NuevoCandidato = () => {
                 newFoto.append('fotografia', foto)
                 await cvService.addFoto(newFoto, response._id)
             }
-            history.push('/candidatos')
+            setIdCV(response._id)
+            history.push(`/cv/${response._id}`)
         }catch(e) {
 
         }

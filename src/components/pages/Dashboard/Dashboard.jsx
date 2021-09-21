@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import useStyles from './dashboard.style'
 
+import Loading from '../../Loading/Loading'
+
 import { Button } from '@material-ui/core'
 
 const Dashboard = ({ user }) => {
@@ -132,29 +134,35 @@ const Dashboard = ({ user }) => {
             </>
         )
     }
+    const renderComponent = () => {
+        return(
+            <>
+                <h1>ACS Informáticos</h1>
+                <div className={classes.containerCards}>
+                    <div className={classes.card}>
+                        <h3>Candidatos</h3>
+                        {renderButtonCandidato()}
+                        {renderButtonNewCandidato()}
+                        {/* {renderButtonCandidatoCsv()} */}
+                    </div>
+                    <div className={classes.card}>
+                        <h3>Ofertas</h3>
+                        {renderButtonOferta()}
+                        {renderButtonNewOferta()}
+                        {renderButtonOfertasCsv()}
+                    </div>
+                    {user.role === 'admin' && <div className={classes.card}>
+                        <h3>Recruiters</h3>
+                        {renderButtonRecruiter()}
+                        {renderButtonNewRecruiter()}
+                    </div>}
+                </div>
+            </>
+        )
+    }
     return(
         <div className={classes.container}>
-            <h1>ACS Informáticos</h1>
-            <div className={classes.containerCards}>
-                <div className={classes.card}>
-                    <h3>Candidatos</h3>
-                    {renderButtonCandidato()}
-                    {renderButtonNewCandidato()}
-                    {/* {renderButtonCandidatoCsv()} */}
-                </div>
-                <div className={classes.card}>
-                    <h3>Ofertas</h3>
-                    {renderButtonOferta()}
-                    {renderButtonNewOferta()}
-                    {renderButtonOfertasCsv()}
-                </div>
-                {user.role === 'admin' && <div className={classes.card}>
-                    <h3>Recruiters</h3>
-                    {renderButtonRecruiter()}
-                    {renderButtonNewRecruiter()}
-                </div>}
-
-            </div>
+            {user ? renderComponent() : <Loading label='Cargando dashboard' />}
         </div>
     )
 }

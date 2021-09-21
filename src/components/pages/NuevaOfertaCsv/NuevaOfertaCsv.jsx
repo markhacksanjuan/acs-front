@@ -104,8 +104,8 @@ const NuevaOfertaCsv = () => {
     }
     return(
         <div className={classes.container}>
-            <h1>Insertar CSV</h1>
-            <form className={classes.form} onSubmit={handleSubmit(onSubmit)} encType='multipart/form-data'>
+            <h1>Introducir ofertas desde archivo</h1>
+            {/* <form className={classes.form} onSubmit={handleSubmit(onSubmit)} encType='multipart/form-data'>
                 {renderFormCsv()}
                 <Button 
                     type='submit'
@@ -115,7 +115,8 @@ const NuevaOfertaCsv = () => {
                 >
                     Añadir CSV
                 </Button>
-            </form>
+            </form> */}
+            <p>Selecciona el archivo EXCEL con las ofertas</p>
             <form className={classes.form} onSubmit={handleSubmit(onSubmitXls)} encType='multipart/form-data'>
                 {renderFormXls()}
                 <Button 
@@ -124,7 +125,7 @@ const NuevaOfertaCsv = () => {
                     variant='contained'
                     className={classes.submit}
                 >
-                    Añadir XLS
+                    Añadir EXCEL
                 </Button>
             </form>
         </div>

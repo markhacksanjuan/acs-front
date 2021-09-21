@@ -5,12 +5,20 @@ const urls = {
 }
 
 const http = axios.create({
-    baseURL: urls.build
+    baseURL: urls.dev
 })
 
 const updateCandidato = async (id, candidato) => {
     try{
-        const response = await http.patch(`/${id}`, candidato)
+        const response = await http.patch(`/info/${id}`, candidato)
+        return response.data
+    }catch(e) {
+        console.error(e)
+    }
+}
+const updateComentario = async (id, candidato) => {
+    try{
+        const response = await http.patch(`/comentario/${id}`, candidato)
         return response.data
     }catch(e) {
         console.error(e)
@@ -18,6 +26,7 @@ const updateCandidato = async (id, candidato) => {
 }
 
 const candidatoService = {
-    updateCandidato
+    updateCandidato,
+    updateComentario
 }
 export default candidatoService

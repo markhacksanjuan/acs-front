@@ -6,6 +6,7 @@ import useStyles from './candidatos.style'
 import cvService from '../../../services/cvService'
 
 import CVCard from '../../CVCard/CVCard'
+import Loading from '../../Loading/Loading'
 
 import { Button,
 Input,
@@ -115,16 +116,13 @@ const Candidatos = (props) => {
 
     return(
         <div className={classes.container}>
-            <h1>Candidatos</h1>
-            <ul className={classes.list}>
-                {/* {cvs && renderChips()} */}
-            </ul>
+            {cvs && <h1>Candidatos</h1>}
             <form>
                 {cvs && renderInput()}
             </form>
             {/* {cvs && renderButtons()} */}
             <div className={classes.candidatos}>
-                {cvs && <CVCard cvs={filteredCandidatos.length !== 0 ? filteredCandidatos : cvs} setIdCV={setIdCV} />}
+                {cvs ? <CVCard cvs={filteredCandidatos.length !== 0 ? filteredCandidatos : cvs} setIdCV={setIdCV} /> : <Loading label='Cargando candidatos' />}
             </div>
 
         </div>

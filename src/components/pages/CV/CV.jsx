@@ -11,6 +11,7 @@ import otrosEstudiosService from '../../../services/otrosEstudiosService'
 import expService from '../../../services/expService'
 import idiomasService from '../../../services/idiomasService'
 import otrosDatosService from '../../../services/otrosDatosService'
+import recruiterService from '../../../services/recruiterService'
 
 import { useTheme } from '@material-ui/core/styles'
 import { Button,
@@ -36,6 +37,7 @@ const CV = (props) => {
     const [editExp, setEditExp] = useState(false)
     const [editIdiomas, setEditIdiomas] = useState(false)
     const [editOtrosDatos, setEditOtrosDatos] = useState(false)
+    const [editComentario, setEditComentario] = useState(false)
 
     const user = props.user
     console.log(candidato)
@@ -49,7 +51,7 @@ const CV = (props) => {
     useEffect(() => {
         getCV(idCV)
     }, [editInfo, editEstudios, editOtrosEstudios,
-    editExp, editIdiomas, editOtrosDatos])
+    editExp, editIdiomas, editOtrosDatos, editComentario])
 
     const getCV = async id => {
         const newCv = await cvService.getOneCV(id)
@@ -112,6 +114,8 @@ const CV = (props) => {
                 return setEditIdiomas(!editIdiomas)
             case 'otrosDatos':
                 return setEditOtrosDatos(!editOtrosDatos)
+            case 'comentario':
+                return setEditComentario(!editComentario)
             default: 
                 return null
         }
@@ -182,7 +186,6 @@ const CV = (props) => {
                                 type='text'
                                 fullWidth
                                 disableUnderline={true}
-                                disabled
                             />
                         }
                         defaultValue={candidato.dni}
@@ -1008,6 +1011,94 @@ const CV = (props) => {
         )
     }
 
+    // -------------------- COMENTARIO RECRUITER -------------
+    const onSubmitComentario = async (data, id) => {
+        if(id){
+            await recruiterService.updateComentario(data, id)
+            setEditComentario(!editComentario)
+        }else {
+            await recruiterService.createComentario(data, idCV)
+            setEditComentario(!editComentario)
+        }
+    }
+    const renderComentarioForm = () => {
+        return(
+            <div className={classes.form}>
+                <div className={classes.head}>
+                    <h3>Editar comentario</h3>
+                    <p onClick={() => onClickEdit('comentario')} className={classes.edit}>Cancelar</p>
+                </div>
+                <form onSubmit={handleSubmit((data) => onSubmitComentario(data, candidato.comentarioRecruiter?._id))}>
+                    <p className={classes.label}>COMENTARIO</p>
+                    <Controller 
+                        name='comentarioRecruiter'
+                        control={control}
+                        render={({ field }) =>
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={candidato.comentarioRecruiter?.comentarioRecruiter}
+                    />
+                    <p className={classes.label}>EMPRESA PROPUESTA</p>
+                    <Controller 
+                        name='empresaPropuesta'
+                        control={control}
+                        render={({ field }) =>
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={candidato.comentarioRecruiter?.empresaPropuesta}
+                    />
+                    <p className={classes.label}>FECHA PROPUESTA</p>
+                    <Controller 
+                        name='fechaPropuesta'
+                        control={control}
+                        render={({ field }) =>
+                            <Input 
+                                {...field}
+                                type='date'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={getDateForm(candidato.comentarioRecruiter?.fechaPropuesta)}
+                    />
+                    <Button
+                        type='submit'
+                        fullWidth
+                        variant='contained'
+                        className={classes.submit}
+                    >
+                        Editar Comentario
+                    </Button>
+                </form>
+            </div>
+        )
+    }
+    const renderComentario = () => {
+        if(candidato){
+            return(
+                <>
+                    <div className={classes.head}>
+                        <h3>Comentario</h3>
+                        <p className={classes.edit} onClick={() => onClickEdit('comentario')}>Editar comentario</p>
+                    </div>
+                    <p>Comentario: {candidato.comentarioRecruiter?.comentarioRecruiter}</p>
+                    <p>Empresa propuesta: {candidato.comentarioRecruiter?.empresaPropuesta}</p>
+                    <p>Fecha propuesta: {getDate(candidato.comentarioRecruiter?.fechaPropuesta)}</p>
+                </>
+            )
+        }else { return null }
+    }
+
 
     // ------------- BOTONES ------------
     // const onEdit = () => {
@@ -1061,6 +1152,7 @@ const CV = (props) => {
                         <Tab label='Experiencia' />
                         <Tab label='Idiomas' />
                         <Tab label='Otros Datos' />
+                        <Tab label='Comentario' />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
@@ -1069,22 +1161,25 @@ const CV = (props) => {
                     onChangeIndex={onChangeIndex}
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                {editInfo ? renderCandidatoForm() : renderCandidato()}
+                        {editInfo ? renderCandidatoForm() : renderCandidato()}
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                {editEstudios ? renderEstudiosForm() : renderEstudios()}
+                        {editEstudios ? renderEstudiosForm() : renderEstudios()}
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
-                {editOtrosEstudios ? renderEstudio2Form() : renderEstudios2()}
+                        {editOtrosEstudios ? renderEstudio2Form() : renderEstudios2()}
                     </TabPanel>
                     <TabPanel value={value} index={3} dir={theme.direction}>
-                {editExp ? renderExpForm() : renderExperiencia()}
+                        {editExp ? renderExpForm() : renderExperiencia()}
                     </TabPanel>
                     <TabPanel value={value} index={4} dir={theme.direction}>
-                {editIdiomas ? renderIdiomaForm() : renderIdiomas()}
+                        {editIdiomas ? renderIdiomaForm() : renderIdiomas()}
                     </TabPanel>
                     <TabPanel value={value} index={5} dir={theme.direction}>
-                {editOtrosDatos ? renderOtrosDatosForm() : renderOtros()}
+                        {editOtrosDatos ? renderOtrosDatosForm() : renderOtros()}
+                    </TabPanel>
+                    <TabPanel value={value} index={6} dir={theme.direction}>
+                        {editComentario ? renderComentarioForm() : renderComentario()}
                     </TabPanel>
 
                 </SwipeableViews>

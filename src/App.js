@@ -63,7 +63,11 @@ const App = () => {
               <CV idCV={idCV} user={user} />
             )
           }} />
-          <Route exact path='/newCV' component={NuevoCandidato} />
+          <Route exact path='/newCV' component={() => {
+            return(
+              <NuevoCandidato setIdCV={setIdCV} />
+            )
+          }} />
           <Route exact path='/addCsv' component={AddCsv} />
           <Route exact path='/editCV' component={() => {
             return(

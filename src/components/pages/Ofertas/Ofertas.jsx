@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useStyles from './ofertas.style'
 
 import OfertaCard from '../../OfertaCard/OfertaCard'
+import Loading from '../../Loading/Loading'
 
 import ofertaService from '../../../services/ofertaService'
 
@@ -19,9 +20,9 @@ const Ofertas = ({ setIdOferta }) => {
     }, [])
     return(
         <div className={classes.container}>
-            <h1>Ofertas</h1>
+            {ofertas && <h1>Ofertas</h1>}
             <div className={classes.ofertas}>
-                {ofertas && <OfertaCard ofertas={ofertas} setIdOferta={setIdOferta}  />}
+                {ofertas ? <OfertaCard ofertas={ofertas} setIdOferta={setIdOferta}  /> : <Loading label='Cargando ofertas' />}
             </div>
         </div>
     )

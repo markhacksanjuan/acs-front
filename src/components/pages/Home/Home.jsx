@@ -33,10 +33,9 @@ const Home = ({ setUser, user }) => {
     const onSubmit = async (data, e) => {
         try{
             const response = await authService.login(data)
-            console.log(response)
             if(response.user){
-                setUser(response.user)
                 history.push('/dashboard')
+                setUser(response.user)
             }
             if(response.errorMessage){
                 setError(response.errorMessage)

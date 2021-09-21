@@ -4,6 +4,7 @@ import useStyles from './recruiters.style'
 import userService from '../../../services/userService'
 
 import RecruiterCard from '../../RecruiterCard/RecruiterCard'
+import Loading from '../../Loading/Loading'
 
 const Recruiters = ({ setIdRecruiter }) => {
     const classes = useStyles()
@@ -21,9 +22,9 @@ const Recruiters = ({ setIdRecruiter }) => {
 
     return(
         <div className={classes.container}>
-            <h1>Recruiters</h1>
+            {recruiters && <h1>Recruiters</h1>}
             <div className={classes.recruiters}>
-                {recruiters && <RecruiterCard setIdRecruiter={setIdRecruiter} recruiters={recruiters} />}
+                {recruiters ? <RecruiterCard setIdRecruiter={setIdRecruiter} recruiters={recruiters} /> : <Loading label='Cargando recruiters' />}
             </div>
         </div>
     )

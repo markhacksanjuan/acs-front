@@ -29,6 +29,7 @@ const NuevoCandidato = ({ setIdCV }) => {
             sexo: '',
             pais: '',
             provincia: '',
+            cposta: '',
             tecnologias: '',
             foto,
             titulacion: '',
@@ -103,12 +104,10 @@ const NuevoCandidato = ({ setIdCV }) => {
                                     {...field}
                                     type='text'
                                     placeholder='DNI'
-                                    required
                                     id='dni'
                                     fullWidth
                                     disableUnderline={true}
                                     autoFocus
-                                    required
                                 />
                             }
                         />
@@ -162,7 +161,6 @@ const NuevoCandidato = ({ setIdCV }) => {
                                     id='apellido2'
                                     fullWidth
                                     disableUnderline={true}
-                                    required
                                 />
                             }
                         />
@@ -265,6 +263,23 @@ const NuevoCandidato = ({ setIdCV }) => {
                                     type='text'
                                     placeholder='Provincia'
                                     id='provincia'
+                                    fullWidth
+                                    disableUnderline={true}
+                                />
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <p className={classes.label}>CÓDIGO POSTAL</p>
+                        <Controller 
+                            name='cpostal'
+                            control={control}
+                            render={({ field }) =>
+                                <Input
+                                    {...field}
+                                    type='text'
+                                    placeholder='Código Postal'
+                                    id='cpostal'
                                     fullWidth
                                     disableUnderline={true}
                                 />

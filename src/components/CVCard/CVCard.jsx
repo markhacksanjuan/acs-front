@@ -29,7 +29,7 @@ const CVCard = ({ cvs, setIdCV }) => {
 
     return(
         <>
-            {renderCV()}
+            {cvs && renderCV()}
         </>
     )
 }

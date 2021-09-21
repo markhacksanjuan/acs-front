@@ -31,6 +31,13 @@ const useStyles = makeStyles(theme => ({
     },
     list: {
         listStyle: 'none'
+    },
+    form: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    search: {
+        margin: '0 5px'
     }
 }))
 

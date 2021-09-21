@@ -260,6 +260,20 @@ const CV = (props) => {
                         }
                         defaultValue={candidato.provincia}
                     />
+                    <p className={classes.label}>CÓDIGO POSTAL</p>
+                    <Controller 
+                        name='cpostal'
+                        control={control}
+                        render={({ field }) => 
+                            <Input 
+                                {...field}
+                                type='text'
+                                fullWidth
+                                disableUnderline={true}
+                            />
+                        }
+                        defaultValue={candidato.cpostal}
+                    />
                     <p className={classes.label}>SEXO</p>
                     <Controller 
                         name='sexo'
@@ -331,6 +345,7 @@ const CV = (props) => {
                     <p>Teléfono: {candidato.telefono}</p>
                     <p>País: {candidato.pais}</p>
                     <p>Provincia: {candidato.provincia}</p>
+                    <p>Código Postal: {candidato.cpostal}</p>
                     <p>Sexo: {candidato.sexo}</p>
                     <p>Tecnologias: {candidato.tecnologias}</p>
                     <p>Origen: {candidato.origen}</p>
